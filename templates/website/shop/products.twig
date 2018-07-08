@@ -1,0 +1,40 @@
+{% extends 'website/base.html.twig' %}
+
+{% block title %}{% trans %}Shop{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="account-content">
+        <div class="shop">
+            <div class="top-bar">
+                <a href="{{ getLocalizedRoute('account') }}" class="button-small back-button">{% trans %}Back to account{% endtrans %}</a>
+                <a href="{{ getLocalizedRoute('account_shop_cart') }}" class="button-small back-button">{% trans %}Cart{% endtrans %}</a>
+            </div>
+            <h1>{% trans %}Shop{% endtrans %}</h1>
+            <div class="products">
+                {% for product in products %}
+                    <div class="product-wrapper">
+                        <a href="{{ getLocalizedRoute('account_shop_product', {id: product.id}) }}" class="item">
+                            <div class="product">
+                                <div class="image">
+                                    <img src="{{ asset('uploads/' ~ product.image ) }}">
+                                </div>
+                                <div class="info">
+                                    <p class="title">{{ product.title }}</p>
+                                    <p class="price">&euro;{{ product.price|number_format(2) }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% if loop.index is divisible by(2) %}
+                        <div class="clear by-two">&nbsp;</div>
+                    {% endif %}
+                    {% if loop.index is divisible by(3) %}
+                        <div class="clear by-three">&nbsp;</div>
+                    {% endif %}
+                {% endfor %}
+                <div class="clear">&nbsp;</div>
+            </div>
+            <div class="clear">&nbsp;</div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% block form_widget_simple %}
+    <input
+            id="{{ id }}"
+            class="form-control"
+            {% if type is defined %}type="{{ type }}"{% endif %}
+            name="{{ full_name }}"
+            {% if required %} required="required"{% endif %}
+            value="{{ value }}"
+    >
+{% endblock %}
+
+{% block choice_widget_expanded %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                {% if multiple %}
+                    <div class="checkbox-choice">
+                        {{ form_widget(child) }}
+                    </div>
+                {% else %}
+                    <div class="radio-choice">
+                        {{ form_widget(child) }}
+                        {{ form_label(child) }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+{% block radio_label %}
+    <label for="{{ id }}" class="radio-label">{{ label|trans }}</label>
+{% endblock %}
+
+{% block checkbox_widget %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            <div class="checkbox">
+                <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+                <label for="{{ id }}" class="checkbox-label">{{ label|trans }}</label>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock checkbox_widget %}

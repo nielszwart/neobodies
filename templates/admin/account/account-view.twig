@@ -1,0 +1,485 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ a.fullName }}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid account-view">
+        <div class="row header-row">
+            <div class="col-6">
+                <h1>{{ a.fullName }}</h1>
+            </div>
+            <div class="col-6">
+                <a href="{{ getLocalizedRoute('admin_account_overview') }}" class="btn btn-dark float-right action">{% trans %}Back to overview{% endtrans %}</a>
+                <a href="{{ getLocalizedRoute('admin_account_toggle_free', {id: a.id}) }}" class="btn btn-dark float-right action">{% trans %}Toggle free{% endtrans %}</a>
+                <a href="{{ getLocalizedRoute('admin_account_toggle_active', {id: a.id}) }}" class="btn btn-dark float-right action">{% trans %}Toggle active{% endtrans %}</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <table class="table table-striped table-sm">
+                    <tbody>
+                    <tr>
+                        <th>ID</th><td>{{ a.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Name{% endtrans %}</th><td>{{ a.fullName }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Address{% endtrans %}</th><td>{{ a.address }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Postcode{% endtrans %}</th><td>{{ a.postcode }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}City{% endtrans %}</th><td>{{ a.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}E-mail{% endtrans %}</th><td>{{ a.user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Phone{% endtrans %}</th><td>{{ a.phoneNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Date of birth{% endtrans %}</th><td>{{ a.dateOfBirth }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Age{% endtrans %}</th><td>{{ a.age }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Date created{% endtrans %}</th><td>{{ a.dateCreated }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Date confirmed{% endtrans %}</th><td>{{ a.dateConfirmed }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Active account{% endtrans %}</th><td>{% if a.user.isActive %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Role{% endtrans %}</th><td>{{ a.user.role }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Free account{% endtrans %}</th><td>{% if a.free %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% if genblueprint %}
+                <div class="col-6">
+                    <h2>GenBluePrint Results</h2>
+                    <table class="table table-striped table-sm">
+                        <tbody>
+                            <tr>
+                                <th>{% trans %}Date{% endtrans %}</th><td>{{ a.genblueprint.dateChanged }}</td>
+                            </tr>
+                            <tr class="green">
+                                <th>{% trans %}Green{% endtrans %}</th><td>{{ genblueprint.green }}%</td>
+                            </tr>
+                            <tr class="blue">
+                                <th>{% trans %}Blue{% endtrans %}</th><td>{{ genblueprint.blue }}%</td>
+                            </tr>
+                            <tr class="red">
+                                <th>{% trans %}Red{% endtrans %}</th><td>{{ genblueprint.red }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+
+        {% if a.profile %}
+        <div class="row">
+            <div class="col-12">
+                <h2>{% trans %}Profile{% endtrans %}</h2>
+                <table class="table table-striped table-sm">
+                    <tbody>
+                    <tr>
+                        <th>{% trans %}City of birth{% endtrans %}</th><td>{{ a.profile.cityOfBirth }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Birthtime{% endtrans %}</th><td>{{ a.profile.birthTime }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Weight (in kg){% endtrans %}</th><td>{{ a.profile.weight }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Height (in cm){% endtrans %}</th><td>{{ a.profile.height }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Gender{% endtrans %}</th><td>{{ a.profile.gender }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}How many children and how old are they?{% endtrans %}</th><td>{{ a.profile.genderOpen }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}How do you feel now, this week?{% endtrans %}</th><td>{{ a.profile.feeling }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}When was the last time you exercised?{% endtrans %}</th><td>{{ a.profile.lastSport }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Physical limits{% endtrans %}</th><td>{{ a.profile.limits }}{% if a.profile.limitsOpen %}<br>{{ a.profile.limitsOpen }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Physical complaints{% endtrans %}</th><td>{{ a.profile.complaints }}{% if a.profile.complaintsOpen %}<br>{{ a.profile.complaintsOpen }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Physiotherapy{% endtrans %}</th><td>{{ a.profile.fysio }}{% if a.profile.fysioOpen %}<br>{{ a.profile.fysioOpen }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Psychic limits{% endtrans %}</th><td>{{ a.profile.psychicLimits }}{% if a.profile.psychicLimitsOpen %}<br>{{ a.profile.psychicLimitsOpen }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Psychotherapy{% endtrans %}</th><td>{{ a.profile.psychotherapy }}{% if a.profile.psychotherapyOpen %}<br>{{ a.profile.psychotherapyOpen }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Eating{% endtrans %}</th><td>{{ a.profile.eating }}{% if a.profile.eatingOpen %}<br>{{ a.profile.eatingOpen }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Operations{% endtrans %}</th><td>{{ a.profile.operations }}{% if a.profile.operationsOpen %}<br>{{ a.profile.operationsOpen }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Medication{% endtrans %}</th><td>{{ a.profile.medication }}{% if a.profile.medicationOpen %}<br>{{ a.profile.medicationOpen }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}REST-moments{% endtrans %}</th><td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {% trans %}I sleep well{% endtrans %}<br>
+                            {% trans %}I have difficulty falling asleep{% endtrans %}<br>
+                            {% trans %}I wake up (often) at night{% endtrans %}<br>
+                            {% trans %}I have difficulty waking up{% endtrans %}<br>
+                            {% trans %}I find it easy to relax{% endtrans %}<br>
+                        </th>
+                        <td>
+                            {% if a.profile.sleepWell %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.notFallingAsleep %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.awakeOften %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.hardToAwaken %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.easyToRelax %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}LIVING-situation{% endtrans %}</th><td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {% trans %}Single{% endtrans %}<br>
+                            {% trans %}Living  together{% endtrans %}<br>
+                            {% trans %}Married{% endtrans %}<br>
+                            {% trans %}Children{% endtrans %}<br>
+                        </th>
+                        <td>
+                            {% if a.profile.single %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.livingTogether %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.married %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.children %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}WORK-situation{% endtrans %}</th><td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {% trans %}I work from 9 till 5{% endtrans %}<br>
+                            {% trans %}I have a lot of responsibilities at work{% endtrans %}<br>
+                            {% trans %}I work in shifts{% endtrans %}<br>
+                            {% trans %}I work in shifts with night shifts{% endtrans %}<br>
+                            {% trans %}I am a freelancer{% endtrans %}<br>
+                            {% trans %}I have 3 breaks during my work{% endtrans %}<br>
+                            {% trans %}I am jobless{% endtrans %}<br>
+                            {% trans %}I am temporarily jobless{% endtrans %}<br>
+                        </th>
+                        <td>
+                            {% if a.profile.nineTillFive %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.responsibilities %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.shiftWork %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.shiftWorkNights %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.freelancer %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.threeBreaks %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.jobless %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.temporaryJobless %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}STRESS-situations{% endtrans %}</th><td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {% trans %}I get stress from my family life{% endtrans %}<br>
+                            {% trans %}I get stress from work{% endtrans %}<br>
+                            {% trans %}I am in a traffic jam daily{% endtrans %}<br>
+                            {% trans %}I want to change my life{% endtrans %}<br>
+                        </th>
+                        <td>
+                            {% if a.profile.stressFamily %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.stressWork %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.dailyTrafficJam %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.wantChangeLife %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}CHILL-moments{% endtrans %}</th><td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {% trans %}I walk regularly{% endtrans %}<br>
+                            {% trans %}I do not have a full agenda{% endtrans %}<br>
+                            {% trans %}I regularly do yoga{% endtrans %}<br>
+                            {% trans %}I regularly meditate{% endtrans %}<br>
+                        </th>
+                        <td>
+                            {% if a.profile.walking %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.noFullAgenda %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.yoga %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.meditate %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}FREE-time{% endtrans %}</th><td>{{ a.profile.hobbies }}{% if a.profile.hobbiesOpen %}<br>{{ a.profile.hobbiesOpen }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}FOOD-supplements{% endtrans %}</th><td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {% trans %}I do not take supplements{% endtrans %}<br>
+                            {% trans %}I take multivitamins{% endtrans %}<br>
+                            {% trans %}I drink protein shakes{% endtrans %}<br>
+                            {% trans %}I take omega 3{% endtrans %}<br>
+                            {% trans %}I take other supplements{% endtrans %}<br>
+                        </th>
+                        <td>
+                            {% if a.profile.noSupplements %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.multivitamins %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.proteinShakes %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.omega3 %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.otherSupplements %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.otherSupplementsOpen %}{{ a.profile.otherSupplementsOpen }}{% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}FOOD{% endtrans %}</th><td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {% trans %}I do not eat bread{% endtrans %}<br>
+                            {% trans %}I eat bread sometimes{% endtrans %}<br>
+                            {% trans %}I eat bread daily{% endtrans %}<br>
+                            {% trans %}I eat fat fish sometimes{% endtrans %}<br>
+                            {% trans %}I eat fat fish often{% endtrans %}<br>
+                            {% trans %}I do not eat fat fish{% endtrans %}<br>
+                            {% trans %}I only eat other fish{% endtrans %}<br>
+                            {% trans %}I eat seaweed{% endtrans %}<br>
+                            {% trans %}I eat out often{% endtrans %}<br>
+                            {% trans %}I am a vegetarian{% endtrans %}<br>
+                        </th>
+                        <td>
+                            {% if a.profile.noBread %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.someBread %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.dailyBread %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.someFatFish %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.oftenFatFish %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.noFatFish %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.onlyOtherFish %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.seaweed %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.eatOutOften %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.vegetarian %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Allergies{% endtrans %}</th><td>{{ a.profile.allergies }}{% if a.profile.allergiesOpen %}<br>{{ a.profile.allergiesOpen }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Intolerance{% endtrans %}</th><td>{{ a.profile.intolerance }}{% if a.profile.intoleranceOpen %}<br>{{ a.profile.intoleranceOpen }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}DIGESTION-process{% endtrans %}</th><td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {% trans %}I feel bloated{% endtrans %}<br>
+                            {% trans %}I often feel full after eating{% endtrans %}<br>
+                            {% trans %}I suffer from flatulence{% endtrans %}<br>
+                            {% trans %}I have to burp often{% endtrans %}<br>
+                            {% trans %}I suffer from stomach acid{% endtrans %}<br>
+                            {% trans %}At which moment of the day do you suffer from which symptoms?{% endtrans %}<br>
+                        </th>
+                        <td>
+                            {% if a.profile.bloated %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.full %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.farting %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.burping %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.stomachAcid %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                           {{ a.profile.digestionOpen }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}DIGESTION-process{% endtrans %}</th><td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {% trans %}I sometimes have a swollen belly{% endtrans %}<br>
+                            {% trans %}I sometimes have obstipation{% endtrans %}<br>
+                            {% trans %}I sometimes have diarrea{% endtrans %}<br>
+                        </th>
+                        <td>
+                            {% if a.profile.swollenBelly %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.obstipation %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.diarrea %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}TRAINING{% endtrans %}</th><td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {% trans %}I have exercised a lot in my life{% endtrans %}<br>
+                            {% trans %}I have experience with group lessons{% endtrans %}<br>
+                            {% trans %}I have experience with strength training{% endtrans %}<br>
+                            {% trans %}I have experience with cardio training{% endtrans %}<br>
+                            {% trans %}I am currently practising the following sports{% endtrans %}<br>
+                        </th>
+                        <td>
+                            {% if a.profile.sportedOften %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.groupLessons %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.strengthTraining %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {% if a.profile.cardioTraining %}{% trans %}Yes{% endtrans %}{% else %}{% trans %}No{% endtrans %}{% endif %}<br>
+                            {{ a.profile.sportsOpen }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{% trans %}Diet{% endtrans %}</th><td>{{ a.profile.diet }}{% if a.profile.dietOpen %}<br>{{ a.profile.dietOpen }}{% endif %}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if a.genblueprint and a.genblueprint.physicalTest %}
+        <div class="row">
+            <div class="col-12">
+                <h2>{% trans %}Physical test{% endtrans %}</h2>
+                <table class="table table-striped table-sm">
+                    <tbody>
+                        <tr>
+                            <th>{% trans %}Maximum power (1 repetition) Bicep Curl.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.bicepCurlMax }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Amount of repetitions with 80% of your maximum power.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.bicepCurl80 }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Maximum power (1 repetition) Tricep Extension.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.tricepExtensionMax }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Amount of repetitions with 80% of your maximum power.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.tricepExtension80 }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Maximum power (1 repetition) Leg Extension or Leg Press.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.legExtensionMax }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Amount of repetitions with 80% of your maximum power.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.legExtension80 }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Maximum power (1 repetition) Leg Curl.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.legCurlMax }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Amount of repetitions with 80% of your maximum power.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.legCurl80 }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Maximum power (1 repetition) Chest machine or Chest press.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.chestPressMax }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Amount of repetitions with 80% of your maximum power.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.chestPress80 }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Maximum power (1 repetition) Lat Pulley.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.latPulleyMax }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Amount of repetitions with 80% of your maximum power.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.latPulley80 }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Maximum power (1 repetition) Shoulder Press or Front Raises.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.shoulderPressMax }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Amount of repetitions with 80% of your maximum power.{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.shoulderPress80 }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Waist size{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.waist }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Belly size{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.belly }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Hip size{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.hip }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Upper arm size{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.upperArm }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Chest size{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.chest }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Neck size{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.neck }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Upper leg size{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.upperLeg }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Lower leg size{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.lowerLeg }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Chin{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.chin }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Cheek{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.cheek }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Armpit/Chest{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.armpitChest }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Tricep{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.tricep }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Bicep{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.bicep }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}back_shoulderblade{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.backShoulderblade }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}lower_back{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.lowerBack }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Right upper side of torso{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.torsoUpperRight }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Right side of waist{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.waistRight }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Right front side of your waist{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.waistFrontRight }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Front of your belly/belly button{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.bellyButton }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Knee{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.knee }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Calf{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.calf }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Front of upper leg{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.upperLegFront }}</td>
+                        </tr>
+                        <tr>
+                            <th>{% trans %}Back of upper leg{% endtrans %}</th><td>{{ a.genblueprint.physicalTest.upperLegBack }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

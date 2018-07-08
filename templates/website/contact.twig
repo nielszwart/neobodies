@@ -1,0 +1,55 @@
+{% extends 'website/base.html.twig' %}
+
+{% block title %}{% trans %}Contact{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class='contact'>
+        <div class="page-content">
+            <h1>{% trans %}Leave us a message{% endtrans %}</h1>
+            {{ form_start(form) }}
+            <div class="contact-details">
+                <div class="details-position">
+                    <p>
+                        Neobodies<br />
+                        Rozengracht 73<br />
+                        1506 SH, Zaandam
+                    </p>
+                    <br/>
+                    <p>
+                        Tel: +31 6 41177688<br />
+                        info@neobodies.nl
+                    </p>
+                </div>
+            </div>
+            <div class="sender-info">
+                <div class="contact-field">
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name) }}
+                </div>
+
+                <div class="contact-field">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                    <input type="text" class="emailtest" name="emailtest" value="">
+                </div>
+
+                <div class="contact-field">
+                    {{ form_label(form.phone) }}
+                    {{ form_widget(form.phone) }}
+                </div>
+            </div>
+            <div class="message">
+                <div class="contact-field">
+                    {{ form_label(form.message) }}
+                    {{ form_widget(form.message) }}
+                </div>
+
+                <button type="submit" class="contact-button">{% trans %}Send{% endtrans %}</button>
+            </div>
+
+            {{ form_end(form) }}
+
+            <div class="clear"></div>
+        </div>
+    </div>
+{% endblock %}

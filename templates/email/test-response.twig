@@ -1,0 +1,17 @@
+{% extends "email/base/base.email.twig" %}
+
+{% block body %}
+    <h2>{% trans %}Thank you for your interest in Neobodies{% endtrans %}</h2>
+    <p>
+        {% trans %}It’s great that you did one of our tests.{% endtrans %}
+        {% trans %}Wait just a little while longer for the results of the test.{% endtrans %}
+    </p>
+    <p>
+        {% trans %}Neobodies does not work with computer analyses and/or algorithms.{% endtrans %}
+        {% trans %}Your data will be handled personally to form the best possible portrait of your body. {% endtrans %}
+    </p>
+    <p>
+        {% trans %}Because of the personal approach it is possible that the results of your test will not be in the mail directly.{% endtrans %}
+        {% trans %}We send the results of the tests three times a day.{% endtrans %}
+    </p>
+{% endblock %}

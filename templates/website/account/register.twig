@@ -1,0 +1,78 @@
+{% extends 'website/base.html.twig' %}
+{% form_theme accountForm 'website/form/fields.twig' %}
+{% block title %}{% trans %}Register{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        <div class="register">
+            <h1>{% trans %}Register{% endtrans %}</h1>
+
+            {{ form_start(userForm) }}
+
+            <div class="form-field">
+                {{ form_label(userForm.email) }}
+                {{ form_widget(userForm.email) }}
+                <input type="text" class="emailtest" name="emailtest" value="">
+            </div>
+
+            <div class="form-field">
+                {{ form_label(userForm.plainPassword.first) }}
+                {{ form_widget(userForm.plainPassword.first) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(userForm.plainPassword.second) }}
+                {{ form_widget(userForm.plainPassword.second) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(accountForm.first_name) }}
+                {{ form_widget(accountForm.first_name) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(accountForm.last_name) }}
+                {{ form_widget(accountForm.last_name) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(accountForm.address) }}
+                {{ form_widget(accountForm.address) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(accountForm.postcode) }}
+                {{ form_widget(accountForm.postcode) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(accountForm.city) }}
+                {{ form_widget(accountForm.city) }}
+            </div>
+
+            <div class="form-field date-field">
+                {{ form_label(accountForm.date_of_birth) }}
+                {{ form_widget(accountForm.date_of_birth) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(accountForm.phone_number) }}
+                {{ form_widget(accountForm.phone_number) }}
+            </div>
+
+            <div class="clear">&nbsp;</div>
+
+            <div class="form-field full-width">
+                {{ form_widget(accountForm.agree) }}
+            </div>
+
+            <div class="clear">&nbsp;</div>
+
+            <button type="submit" class="button-large">{% trans %}Register{% endtrans %}</button>
+
+            {{ form_widget(accountForm._token) }}
+
+            {{ form_end(userForm) }}
+        </div>
+    </div>
+{% endblock %}

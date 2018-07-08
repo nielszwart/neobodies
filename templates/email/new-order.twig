@@ -1,0 +1,34 @@
+{% extends "email/base/base.email.twig" %}
+
+{% block body %}
+    <h2>{% trans %}You received a new order from neobodies!{% endtrans %}</h2>
+    <p>{% trans %}See the order below.{% endtrans %}: </p>
+    <table class="new-order">
+        <tr>
+            <td>ID:</td><td>{{ order.id }}</td>
+        </tr>
+        <tr>
+            <td>{% trans %}Account{% endtrans %}:</td><td>{{ order.account.fullName }} ({{ order.account.id }})</td>
+        </tr>
+        <tr>
+            <td>{% trans %}Total price{% endtrans %}:</td><td>&euro;{{ order.totalPrice|number_format(2) }}</td>
+        </tr>
+        <tr>
+            <td>{% trans %}Payment method{% endtrans %}:</td><td>{{ order.paymentMethod }}</td>
+        </tr>
+    </table>
+    <table class="new-order">
+        {% for line in order.orderLines %}
+            <tr>
+                <td>
+                    <a href="{{ getLocalizedRoute('account_shop_product', {id: line.product.id}) }}" target="_blank">{{ line.product.title }}</a>
+                    x{{ line.amount }}
+                    {% if line.color %} | {{ line.color|capitalize }}{% endif %}
+                    {% if line.size %} | {{ line.size|capitalize }}{% endif %}
+                    <span class="right">&euro;{{ line.price|number_format(2) }}</span>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

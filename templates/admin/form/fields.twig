@@ -1,0 +1,44 @@
+{% block form_label %}
+    <div class="col-3">
+        <label for="{{ id }}" class="col-form-label">{{ label|trans }}</label>
+    </div>
+{% endblock %}
+
+{% block form_widget_simple %}
+    <div class="col-9">
+        {% if id == 'product_video' %} <div id="product_video_input">{% endif %}
+        <input
+                id="{{ id }}"
+                class="form-control"
+                {% if type is defined %}type="{{ type }}"{% endif %}
+                name="{{ full_name }}"
+                {% if required %} required="required"{% endif %}
+                value="{{ value }}"
+        >
+        {% if id == 'product_video' %} </div>{% endif %}
+    </div>
+{% endblock %}
+
+{% block choice_widget_expanded %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                {{ form_widget(child) }}
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+{% block checkbox_widget %}
+    <div class="col-9">
+        <div class="checkbox">
+            <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+        </div>
+    </div>
+{% endblock checkbox_widget %}
+
+{% block textarea_widget %}
+    <div class="col-9">
+        <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+    </div>
+{% endblock %}

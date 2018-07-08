@@ -1,0 +1,146 @@
+{% extends 'admin/base.html.twig' %}
+{% form_theme form 'admin/form/fields.twig' %}
+{% block title %}{% trans %}Edit product{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid edit-page">
+        <div class="row header-row">
+            <div class="col-6">
+                <h1>{% trans %}Edit product{% endtrans %}</h1>
+            </div>
+            <div class="col-6">
+                <a href="{{ getLocalizedRoute('admin_product_overview') }}" class="btn btn-dark float-right">{% trans %}Back to overview{% endtrans %}</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-1">&nbsp;</div>
+            <div class="col-10">
+                {{ form_start(form) }}
+
+                <div class="form-group row">
+                    {{ form_label(form.title) }}
+                    {{ form_widget(form.title) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.image) }}
+                    {{ form_widget(form.image) }}
+                </div>
+
+                {% if product.image %}
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label>{% trans %}Current image{% endtrans %}</label>
+                        </div>
+                        <div class="col-9">
+                            <div class="current-image">
+                                <img src="{{ asset('uploads/' ~ product.image) }}">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group row">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.price) }}
+                    {{ form_widget(form.price) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.ebook) }}
+                    {{ form_widget(form.ebook) }}
+                </div>
+
+                {% if product.ebook %}
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label>{% trans %}Current e-book{% endtrans %}</label>
+                        </div>
+                        <div class="col-9">
+                            <div class="current-ebook">
+                                <a href="{{ asset('uploads/' ~ product.ebook) }}" target="_blank">{{ product.ebook }}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group row">
+                    {{ form_label(form.has_genblueprint) }}
+                    {{ form_widget(form.has_genblueprint) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.is_clothing) }}
+                    {{ form_widget(form.is_clothing) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.deleted) }}
+                    {{ form_widget(form.deleted) }}
+                </div>
+
+                <button type="submit" class="btn btn-success float-right">{% trans %}Save{% endtrans %}</button>
+            </div>
+            <div class="col-1">&nbsp;</div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
+    <script>
+        var editors = document.querySelectorAll('.ckeditor');
+        var i;
+        for (i = 0; i < editors.length; i++) {
+            ClassicEditor
+                .create(editors[i])
+                .catch(error => {
+                console.error(error);
+            });
+        }
+    </script>
+    {#<script src="{{ asset('admin/js/resumable/resumable.js') }}"></script>#}
+    {#<script>#}
+        {#var resumable = new Resumable({#}
+            {#target: '{{ getLocalizedRoute('admin_product_edit', {id: product.id}) }}',#}
+            {#query: {upload_token: 'video_upload'},#}
+            {#maxFiles: 1,#}
+            {#testChunks: false,#}
+        {#});#}
+
+        {#if (!resumable.support) {#}
+            {#alert('Your browser does not support large file uploads');#}
+        {#}#}
+
+        {#var videoInputDiv = document.getElementById('product_video_input');#}
+        {#var videoInput = document.getElementById('product_video');#}
+        {#var uploadedFile;#}
+        {#resumable.assignBrowse(videoInput);#}
+        {#resumable.on('fileAdded', function(file){#}
+            {#uploadedFile = file;#}
+            {#console.log('Added ' + file.fileName);#}
+            {#resumable.upload();#}
+        {#});#}
+        {#resumable.on('uploadStart', function () {#}
+            {#console.log('Uploading...');#}
+            {#videoInput.style.display = 'none';#}
+            {#videoInputDiv.innerText = "Uploading...";#}
+        {#});#}
+        {#resumable.on('complete', function() {#}
+            {#console.log('Done uploading!');#}
+            {#videoInputDiv.innerHTML = "<span class='green'>Uploaded <a href='{{ asset('uploads/') }}" + uploadedFile.fileName +"' target='_blank'>" + uploadedFile.fileName + "</a></span>";#}
+            {#document.getElementById('current_video').style.display = "none";#}
+        {#});#}
+        {#resumable.on('error', function() {#}
+            {#console.log('Error occured');#}
+            {#videoInputDiv.innerHTML = "<span class='red'>Failed to upload file</span>";#}
+        {#});#}
+    {#</script>#}
+{% endblock %}

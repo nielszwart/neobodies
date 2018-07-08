@@ -1,0 +1,143 @@
+{% extends 'admin/base.html.twig' %}
+{% form_theme form 'admin/form/fields.twig' %}
+{% block title %}{% trans %}Edit page{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid edit-page">
+        <div class="row header-row">
+            <div class="col-6">
+                <h1>{% trans %}Edit page{% endtrans %}: {{ page.title }} ({{ page.locale }})</h1>
+            </div>
+            <div class="col-6">
+                <a href="{{ getLocalizedRoute('admin_page_overview') }}" class="btn btn-dark float-right">{% trans %}Back to overview{% endtrans %}</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-1">&nbsp;</div>
+            <div class="col-10">
+                {{ form_start(form) }}
+
+                <div class="form-group row">
+                    {{ form_label(form.title) }}
+                    {{ form_widget(form.title, {'value': page.title}) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.header) }}
+                    {{ form_widget(form.header) }}
+                </div>
+
+                {% if page.header %}
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label>{% trans %}Current header image{% endtrans %}</label>
+                        </div>
+                        <div class="col-9">
+                            <div class="current-image" style="background-image: url('{{ asset('uploads/' ~ page.header) }}');"></div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group row">
+                    {{ form_label(form.content) }}
+                    {{ form_widget(form.content, {'value': page.content, 'class': 'ckeditor'}) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.footer) }}
+                    {{ form_widget(form.footer) }}
+                </div>
+
+                {% if page.footer %}
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label>{% trans %}Current footer image{% endtrans %}</label>
+                        </div>
+                        <div class="col-9">
+                            <div class="current-image" style="background-image: url('{{ asset('uploads/' ~ page.footer) }}');"></div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group row">
+                    {{ form_label(form.call_to_action) }}
+                    {{ form_widget(form.call_to_action) }}
+                </div>
+
+                {% if page.callToAction %}
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label>{% trans %}Current call to action image{% endtrans %}</label>
+                        </div>
+                        <div class="col-9">
+                            <div class="current-image cta" style="background-image: url('{{ asset('uploads/' ~ page.callToAction) }}');"></div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group row">
+                    {{ form_label(form.call_to_action_link) }}
+                    {{ form_widget(form.call_to_action_link, {'value': page.callToActionLink}) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.slide) }}
+                    {{ form_widget(form.slide, {'checked': page.slide == 1}) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.slide_image) }}
+                    {{ form_widget(form.slide_image) }}
+                </div>
+
+                {% if page.slideImage %}
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label>{% trans %}Current slide image{% endtrans %}</label>
+                        </div>
+                        <div class="col-9">
+                            <div class="current-image" style="background-image: url('{{ asset('uploads/' ~ page.slideImage) }}');"></div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group row">
+                    {{ form_label(form.slide_title) }}
+                    {{ form_widget(form.slide_title, {'value': page.slideTitle}) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.slide_text) }}
+                    {{ form_widget(form.slide_text, {'value': page.slideText}) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.button_text) }}
+                    {{ form_widget(form.button_text, {'value': page.buttonText}) }}
+                </div>
+
+                <button type="submit" class="btn btn-success float-right">{% trans %}Save{% endtrans %}</button>
+            </div>
+            <div class="col-1">&nbsp;</div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
+<script>
+    var editors = document.querySelectorAll('.ckeditor');
+    var i;
+    for (i = 0; i < editors.length; i++) {
+        ClassicEditor
+            .create(editors[i])
+            .catch(error => {
+                console.error(error);
+            }
+        );
+    }
+</script>
+{% endblock %}

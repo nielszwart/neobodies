@@ -1,0 +1,133 @@
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: @white;
+  z-index: 999999;
+}
+
+.nav-wrapper {
+  height: 90px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid @orange;
+
+  .nav-top {
+    height: 30px;
+    width: 100%;
+    background-color: @orange;
+    font-size: 12px;
+
+    a {
+      color: @white;
+      display: block;
+      padding: 9px 0;
+    }
+
+    .nav-top-email {
+      float: left;
+      margin-left: @navigation-margin;
+    }
+
+    .nav-top-menu {
+      float: right;
+      margin-right: @navigation-margin;
+      display: inline-block;
+
+      .nav-item {
+        float: right;
+
+        a {
+          display: block;
+          padding: 9px 10px;
+        }
+      }
+
+      .language-selector {
+        a {
+          padding: 6px;
+        }
+
+        .language-flag {
+          width: 19px;
+          height: 15px;
+        }
+      }
+    }
+  }
+
+  .nav-bottom {
+    background-color: @white;
+    height: 60px;
+
+    a {
+      color: @black;
+    }
+
+    .nav-bottom-logo {
+      float: left;
+      margin-left: @navigation-margin;
+      height: 50px;
+      padding: 5px 0;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    .bottom-menu {
+      float: right;
+      margin-right: @navigation-margin;
+      display: inline-block;
+
+      .nav-item {
+        float: left;
+
+        a {
+          display: block;
+          padding: 22px 15px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .mobile-menu {
+    display: none;
+
+    #toggle-menu {
+      float: right;
+      margin-right: 25px;
+      height: 30px;
+      padding: 15px 0;
+
+      img {
+        height: 30px;
+        cursor: pointer;
+      }
+    }
+
+    #mobile-menu-list {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 91px;
+      width: 250px;
+      border-bottom: 1px solid @orange;
+      border-left: 1px solid @orange;
+      background-color: @white;
+
+      li {
+        padding: 10px;
+
+        a {
+          color: @orange;
+        }
+      }
+    }
+    #mobile-menu-list.open {
+      display: block;
+    }
+  }
+}

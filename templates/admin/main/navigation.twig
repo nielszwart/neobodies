@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="{{ getLocalizedRoute('admin_dashboard') }}">Neobodies Admin</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto w-100 justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ getLocalizedRoute('admin_page_overview') }}">{% trans %}Pages{% endtrans %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ getLocalizedRoute('admin_account_overview') }}">{% trans %}Accounts{% endtrans %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ getLocalizedRoute('admin_product_overview') }}">{% trans %}Products{% endtrans %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ getLocalizedRoute('admin_tool_overview') }}">{% trans %}Tools{% endtrans %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ getLocalizedRoute('admin_partner_overview') }}">{% trans %}Partners{% endtrans %}</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+            <li class="nav-item">
+            <a class="nav-link" href="{{ getLocalizedRoute('homepage') }}">{% trans %}Website{% endtrans %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ getLocalizedRoute('logout') }}">{% trans %}Logout{% endtrans %}</a>
+            </li>
+        </ul>
+    </div>
+</nav>

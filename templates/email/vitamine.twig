@@ -1,0 +1,98 @@
+{% extends "email/base/base.email.twig" %}
+
+{% block body %}
+    <h2>{% trans %}Magnesium test results{% endtrans %}</h2>
+    <p>{% trans %}We received the following answers from the magnesium test{% endtrans %}: </p>
+    <table class="test">
+        <tr>
+            <td class="question">{% trans %}Name{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.name }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}E-mail{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.email }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Ben je vegetariër, veganist of eet je niet met regelmaat dierlijke producten?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question1 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Ben je vaak vermoeidheid en problemen met concentratie en geheugen?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question2 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Heb je last van je darmen?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question3 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Heeft je wel eens last van een ontstoken, branderige, prikkelbare tong of aften?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question4 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Ervaar je wel eens tintelingen in de handen of voeten?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question5 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Heeft u last van neerslachtigheid of voel je wel eens down?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question6 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Kom je moeilijk in slaap of slaap je moeilijk door?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question7 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Ben je wel eens duizelig of heb je last van bloedarmoede of oorsuizen?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question8 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Heb je wel eens last van je maag of een maagoperatie ondergaan?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question9 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Heb je wel eens stress en/of bent u ouder dan 55 jaar?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question10 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Gebruikt u medicatie zoals rennies, maagbeschermers, maagzuurremmers of metformine?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question11 }}</td>
+        </tr>
+    </table>
+{% endblock %}

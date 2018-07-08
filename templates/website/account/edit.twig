@@ -1,0 +1,55 @@
+{% extends 'website/base.html.twig' %}
+
+{% block title %}{% trans %}Edit account{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        <div class="edit">
+            <a href="{{ getLocalizedRoute('account') }}" class="button-small back-button">{% trans %}Back to account{% endtrans %}</a>
+            <h1>{% trans %}Edit account{% endtrans %}</h1>
+
+            {{ form_start(accountForm) }}
+
+            <div class="form-field">
+                {{ form_label(accountForm.first_name) }}
+                {{ form_widget(accountForm.first_name, {value: account.firstName}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(accountForm.last_name) }}
+                {{ form_widget(accountForm.last_name, {value: account.lastName}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(accountForm.address) }}
+                {{ form_widget(accountForm.address, {value: account.address}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(accountForm.postcode) }}
+                {{ form_widget(accountForm.postcode, {value: account.postcode}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(accountForm.city) }}
+                {{ form_widget(accountForm.city, {value: account.city}) }}
+            </div>
+
+            <div class="form-field date-field">
+                {{ form_label(accountForm.date_of_birth) }}
+                {{ form_widget(accountForm.date_of_birth, {value: account.dateOfBirth}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(accountForm.phone_number) }}
+                {{ form_widget(accountForm.phone_number, {value: account.phoneNumber}) }}
+            </div>
+
+            <div class="clear">&nbsp;</div>
+
+            <button type="submit" class="button-large">{% trans %}Edit{% endtrans %}</button>
+
+            {{ form_end(accountForm) }}
+        </div>
+    </div>
+{% endblock %}

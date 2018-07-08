@@ -2,6 +2,12 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    uploads_directory: '%kernel.project_dir%/public/uploads/'
+    domain_locales:
+        www.neobodies.eu: en
+        www.neobodies.nl: nl
+    mollie_api_key: '%env(MOLLIE_API_KEY)%'
+
 
 services:
     # default configuration for services in *this* file
@@ -26,3 +32,17 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\FileUploader:
+        arguments:
+            $targetDir: '%uploads_directory%'
+
+    App\Listeners\LocaleListener:
+        tags:
+            -  { name: kernel.event_subscriber }
+        arguments:
+            ['%domain_locales%', '%locale%']
+
+    App\Service\Hostnames:
+        arguments:
+            $env: '%env(APP_ENV)%'

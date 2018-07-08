@@ -1,0 +1,18 @@
+<div class="partners">
+    {% for partner in partners %}
+        <div class="partner-block">
+            <div class="left">
+                <a href="{{ partner.link }}"{% if partner.newTab %} target="_blank"{% endif %}>
+                    <img class="partner-image" src="{{ asset('uploads/' ~ partner.image) }}">
+                </a>
+            </div>
+            <div class="right">
+                <div class="partner-text-position">
+                    <a href="{{ partner.link }}"{% if partner.newTab %} target="_blank"{% endif %}><h2>{{ partner.name }}</h2></a>
+                    <div class="partner-text">{{ partner.content|raw }}</div>
+                </div>
+            </div>
+            <div class="clear">&nbsp;</div>
+        </div>
+    {% endfor %}
+</div>

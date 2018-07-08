@@ -1,0 +1,56 @@
+.account-content {
+  .page-content();
+
+  .purchases {
+    width: 70%;
+    margin: 0 auto;
+
+    .orders {
+
+      .order {
+        padding: 10px;
+        border: 1px solid @orange;
+        margin-top: 40px;
+
+        .info {
+
+          td {
+            padding: 5px 20px 5px 0;
+          }
+
+          td:first-child {
+            font-weight: bold
+          }
+        }
+
+        .lines {
+          margin: 20px 0 0;
+
+          .line {
+            background-color: lightgray;
+            padding: 10px;
+            border: 1px solid lightgray;
+
+            a {
+              color: @orange;
+              text-decoration: underline;
+            }
+
+            span.right {
+              float: right;
+              font-weight: bold;
+            }
+          }
+
+          .line:nth-child(even) {
+            background-color: white;
+          }
+        }
+      }
+    }
+
+    .break {
+      display: none;
+    }
+  }
+}

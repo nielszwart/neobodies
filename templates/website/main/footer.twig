@@ -1,0 +1,12 @@
+<footer>
+    <div class="footer-wrapper">
+        <p>
+            <span class="no-show-mobile">
+                &copy; {{ "now"|date("Y") }} | Neobodies |
+            </span>
+            <a href="{{ getLocalizedRoute('page_view', {slug: getPageSlugById(8)}) }}">{% trans %}Terms & Conditions{% endtrans %}</a> |
+            <a href="{{ getLocalizedRoute('page_view', {slug: getPageSlugById(9)}) }}">{% trans %}Privacy Statement{% endtrans %}</a> |
+            <a href="{{ getLocalizedRoute('page_view', {slug: getPageSlugById(10)}) }}">{% trans %}Disclaimer{% endtrans %}</a>
+        </p>
+    </div>
+</footer>

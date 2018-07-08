@@ -1,0 +1,22 @@
+{% extends "email/base/base.email.twig" %}
+
+{% block body %}
+    <h2>{% trans %}Contact message{% endtrans %}</h2>
+    <p>{% trans %}We received the following message from our contact form{% endtrans %}: </p>
+    <table class="contact">
+        <tr>
+            <td>{% trans %}Name{% endtrans %}:</td><td>{{ name }}</td>
+        </tr>
+        <tr>
+            <td>{% trans %}E-mail{% endtrans %}:</td><td>{{ email }}</td>
+        </tr>
+        {% if phone %}
+            <tr>
+                <td>{% trans %}Phone{% endtrans %}:</td><td>{{ phone }}</td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td>{% trans %}Message{% endtrans %}:</td><td>{{ message|nl2br }}</td>
+        </tr>
+    </table>
+{% endblock %}

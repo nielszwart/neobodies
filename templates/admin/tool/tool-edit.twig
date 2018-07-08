@@ -1,0 +1,97 @@
+{% extends 'admin/base.html.twig' %}
+{% form_theme form 'admin/form/fields.twig' %}
+{% block title %}{% trans %}Edit tool{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid edit-tool">
+        <div class="row header-row">
+            <div class="col-6">
+                <h1>{% trans %}Edit tool{% endtrans %}: {{ tool.title }} ({{ tool.locale }})</h1>
+            </div>
+            <div class="col-6">
+                <a href="{{ getLocalizedRoute('admin_tool_overview') }}" class="btn btn-dark float-right">{% trans %}Back to overview{% endtrans %}</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-1">&nbsp;</div>
+            <div class="col-10">
+                {{ form_start(form) }}
+
+                <div class="form-group row">
+                    {{ form_label(form.title) }}
+                    {{ form_widget(form.title, {'value': tool.title}) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.image) }}
+                    {{ form_widget(form.image) }}
+                </div>
+
+                {% if tool.image %}
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label>{% trans %}Current image{% endtrans %}</label>
+                        </div>
+                        <div class="col-9">
+                            <div class="current-image" style="background-image: url('{{ asset('uploads/' ~ tool.image) }}');"></div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group row">
+                    {{ form_label(form.content) }}
+                    {{ form_widget(form.content, {'value': tool.content, 'class': 'ckeditor'}) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.link) }}
+                    {{ form_widget(form.link, {'value': tool.link}) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.file) }}
+                    {{ form_widget(form.file) }}
+                </div>
+
+                {% if tool.file %}
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label>{% trans %}Current file{% endtrans %}</label>
+                        </div>
+                        <div class="col-9">
+                            <a href="{{ asset('uploads/' ~ tool.file) }}" target="_blank">{{ tool.file }}</a>
+                            <a href="{{ getLocalizedRoute('admin_tool_edit_delete_file', {'id': tool.id, 'locale': tool.locale}) }}" class="delete">{% trans %}Delete{% endtrans %}</a>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group row">
+                    {{ form_label(form.new_tab) }}
+                    {{ form_widget(form.new_tab, {'checked': tool.newTab == 1}) }}
+                </div>
+
+                <button type="submit" class="btn btn-success float-right">{% trans %}Save{% endtrans %}</button>
+            </div>
+            <div class="col-1">&nbsp;</div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
+    <script>
+        var editors = document.querySelectorAll('.ckeditor');
+        var i;
+        for (i = 0; i < editors.length; i++) {
+            ClassicEditor
+                .create(editors[i])
+                .catch(error => {
+                console.error(error);
+        }
+        );
+        }
+    </script>
+{% endblock %}

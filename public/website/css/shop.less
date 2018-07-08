@@ -1,0 +1,151 @@
+.shop {
+  width: 80%;
+  margin: 40px auto 0;
+
+  .products {
+
+    .product-wrapper {
+      width: 33%;
+      float: left;
+
+      a.item {
+
+        .product {
+          padding: 25px;
+          width: auto;
+          margin: 0;
+
+          .image {
+
+            img {
+              width: 100%;
+            }
+          }
+
+          .info {
+            text-align: center;
+            font-size: 14px;
+
+            .price {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .by-two {
+    display: none;
+  }
+}
+
+.product {
+  width: 70%;
+  margin: 0 auto;
+
+  .left {
+    width: 50%;
+    float: left;
+    margin-top: 10px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .right {
+    width: 50%;
+    float: left;
+    margin-top: 10px;
+
+    .cart {
+      padding: 0 25px;
+
+      p.price {
+        margin: 20px 0;
+        font-weight: bold;
+      }
+
+      form {
+        border-bottom: 1px solid @orange;
+
+        .product-field {
+          .form-field();
+          width: 100%;
+
+          label {
+            width: 20%;
+            float: left;
+          }
+
+          input {
+            width: 10%;
+            float: left;
+            clear: none;
+          }
+
+          button {
+            float: left;
+            margin-left: 20px;
+          }
+
+          select {
+            width: auto;
+          }
+        }
+      }
+
+    }
+
+    .info {
+      margin-top: 25px;
+      padding: 25px;
+    }
+  }
+}
+
+.shoppingcart {
+  width: 70%;
+  margin: 0 auto;
+
+  .items {
+    border: 1px solid black;
+    padding: 20px;
+    margin: 10px 0 25px 0;
+
+    .item {
+      background-color: lightgray;
+      padding: 10px;
+      border: 1px solid lightgray;
+
+      a {
+        color: @orange;
+        text-decoration: underline;
+      }
+
+      span.right {
+        float: right;
+        font-weight: bold;
+      }
+    }
+
+    .item:nth-child(even) {
+      background-color: white;
+    }
+  }
+
+  .summary {
+    text-align: right;
+
+    form {
+      margin-top: 20px;
+    }
+  }
+}
+
+.top-bar {
+  a {
+    margin-left: 20px;
+  }
+}

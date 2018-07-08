@@ -1,0 +1,100 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body * {
+  -webkit-appearance: none;
+}
+
+p, h1, h2, h3 {
+  line-height: 1.7em;
+}
+
+h1 {
+  font-size: 25px;
+  color: @orange;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 20px;
+  color: @orange;
+  font-weight: bold;
+}
+
+.clear {
+  clear: both;
+  height: 0;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.flash-message {
+  padding: 10px;
+  margin: 10px 20%;
+  text-align: center;
+  border: 2px solid;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.flash-success {
+  background-color: @flash-bg-success-color;
+  border-color: @flash-border-success-color;
+}
+
+.flash-error {
+  background-color: @flash-bg-error-color;
+  border-color: @flash-border-error-color;
+}
+
+.flash-notice {
+  background-color: @flash-bg-notice-color;
+  border-color: @flash-border-notice-color;
+}
+
+.button {
+  background-color: @orange;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  border: 0;
+}
+
+.button-small {
+  .button();
+  padding: 7px 20px;
+}
+
+.button-large {
+  .button();
+  padding: 15px 20px;
+}
+
+.float-right {
+  float: right;
+}
+
+#content {
+  margin-top: 90px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.back-button {
+  float: right;
+  margin-top: 10px;
+}

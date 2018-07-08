@@ -1,0 +1,11 @@
+{% extends "email/base/base.email.twig" %}
+
+{% block body %}
+    {% if new %}
+        <h2>{% trans %}New GenBluePrint was submitted{% endtrans %}</h2>
+    {% else %}
+        <h2>{% trans %}A GenBluePrint was edited{% endtrans %}</h2>
+    {% endif %}
+    <p>{% trans %}Click the link below to see the results{% endtrans %}</p>
+    <a href="{{ getLocalizedRoute('admin_account_view', {id: accountId}) }}" class="button button-large" target="_blank">{% trans %}View account{% endtrans %}</a>
+{% endblock %}

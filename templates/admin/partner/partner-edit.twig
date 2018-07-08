@@ -1,0 +1,80 @@
+{% extends 'admin/base.html.twig' %}
+{% form_theme form 'admin/form/fields.twig' %}
+{% block title %}{% trans %}Edit partner{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid edit-partner">
+        <div class="row header-row">
+            <div class="col-6">
+                <h1>{% trans %}Edit partner{% endtrans %}: {{ partner.name }} ({{ partner.locale }})</h1>
+            </div>
+            <div class="col-6">
+                <a href="{{ getLocalizedRoute('admin_partner_overview') }}" class="btn btn-dark float-right">{% trans %}Back to overview{% endtrans %}</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-1">&nbsp;</div>
+            <div class="col-10">
+                {{ form_start(form) }}
+
+                <div class="form-group row">
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name, {'value': partner.name}) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.image) }}
+                    {{ form_widget(form.image) }}
+                </div>
+
+                {% if partner.image %}
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label>{% trans %}Current image{% endtrans %}</label>
+                        </div>
+                        <div class="col-9">
+                            <div class="current-image" style="background-image: url('{{ asset('uploads/' ~ partner.image) }}');"></div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group row">
+                    {{ form_label(form.content) }}
+                    {{ form_widget(form.content, {'value': partner.content, 'class': 'ckeditor'}) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.link) }}
+                    {{ form_widget(form.link, {'value': partner.link}) }}
+                </div>
+
+                <div class="form-group row">
+                    {{ form_label(form.new_tab) }}
+                    {{ form_widget(form.new_tab, {'checked': partner.newTab == 1}) }}
+                </div>
+
+                <button type="submit" class="btn btn-success float-right">{% trans %}Save{% endtrans %}</button>
+            </div>
+            <div class="col-1">&nbsp;</div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.2/classic/ckeditor.js"></script>
+    <script>
+        var editors = document.querySelectorAll('.ckeditor');
+        var i;
+        for (i = 0; i < editors.length; i++) {
+            ClassicEditor
+                .create(editors[i])
+                .catch(error => {
+                console.error(error);
+        }
+        );
+        }
+    </script>
+{% endblock %}

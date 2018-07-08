@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Neobodies{% endblock %}</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('website/css/main.css') }}" />
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+    {% include 'website/main/navigation.twig' %}
+
+    <div id="content">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-message flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% block body %}{% endblock %}
+    </div>
+
+    {% include 'website/main/footer.twig' %}
+    {% block javascripts %}{% endblock %}
+    <script type="text/javascript" src="{{ asset('website/js/navigation.js') }}"></script>
+</body>
+</html>

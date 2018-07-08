@@ -1,0 +1,91 @@
+{% extends "email/base/base.email.twig" %}
+
+{% block body %}
+    <h2>{% trans %}Magnesium test results{% endtrans %}</h2>
+    <p>{% trans %}We received the following answers from the magnesium test{% endtrans %}: </p>
+    <table class="test">
+        <tr>
+            <td class="question">{% trans %}Name{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.name }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}E-mail{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.email }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Drink je wekelijks koolzuurhoudende dranken (ook spa rood)?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question1 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Eet je regelmatig suiker in je voeding of eet je regelmatig gebakjes, taarten, desserts, snoep of andere voedingsmiddelen met veel suiker?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question2 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Drink je dagelijks koffie, thee of ander cafeine houdende dranken?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question3 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Heb je dagelijks veel stress te verwerken?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question4 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Als je gaat slapen...{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question5 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Gebruik je medicijnen m.b.t. je bloedruk, je hart of longen?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question6 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Drink je gemiddeld meer dan 7 glazen alcohol per week?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question7 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Heb je wel eens last van een trillend ooglid of andere spiertrillingen?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question8 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Heb je diabetes type I of II?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question9 }}</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="question">{% trans %}Wat is jouw leeftijd?{% endtrans %}:</td>
+        </tr>
+        <tr>
+            <td>{{ data.question10 }}</td>
+        </tr>
+    </table>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'website/base.html.twig' %}
+
+{% block title %}{% trans %}Thank you{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        <div class="order-placed">
+            <h1>{% trans %}Thank you!{% endtrans %}</h1>
+            <p>
+                {% trans %}Your order has been received.{% endtrans %}<br>
+                {% trans %}The order will be processed as soon as possible.{% endtrans %}
+            </p>
+        </div>
+    </div>
+{% endblock %}

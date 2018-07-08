@@ -1,0 +1,313 @@
+<!--
+Outlook Conditional CSS
+These two style blocks target Outlook 2007 &amp; 2010 specifically, forcing
+columns into a single vertical stack as on mobile clients. This is
+primarily done to avoid the 'page break bug' and is optional.
+Third block targets Outlook 2013, having troubles with webfonts
+More information here:
+http://templates.mailchimp.com/development/css/outlook-conditional-css
+-->
+<!--[if mso 12]>
+<style>
+    .flexibleContainer {
+        display:block !important;
+        width:100% !important;
+    }
+</style>
+<![endif]-->
+<!--[if mso 14]>
+<style>
+    .flexibleContainer {
+        display:block !important;
+        width:100% !important;
+    }
+</style>
+<![endif]-->
+<!--[if mso 15]>
+<style>
+    h1,h2,h3,h4,h5,h6,.headerCell,.footerCell,.textContent,.textContentLast,.buttonContent,.emailCalendarDay,.emailCalendarMonth {
+        font-family:Arial,sans-serif !important;
+        mso-line-height-rule:exactly;
+    }
+</style>
+<![endif]-->
+
+<style type="text/css">
+    body,#bodyTable,#bodyCell{
+        height:100% !important;
+        margin:0;
+        padding:0;
+        width:100% !important;
+        font-family: 'Montserrat', sans-serif;
+        line-height:1.5em;
+    }
+    table{
+        border-collapse:collapse;
+    }
+    img,a img{
+        border:0;
+        outline:none;
+        text-decoration:none;
+        vertical-align:bottom;
+    }
+    h1,h2,h3,h4,h5,h6{
+        margin:0;
+        padding:0;
+    }
+    p{
+        margin:1em 0;
+        font-size:14px;
+        color:#808080;
+    }
+    .ReadMsgBody{
+        width:100%;
+    }
+    .ExternalClass{
+        width:100%;
+    }
+    .ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div{
+        line-height:100%;
+    }
+    table,td{
+        mso-table-lspace:0;
+        mso-table-rspace:0;
+        color: #808080;
+    }
+    #outlook a{
+        padding:0;
+    }
+    img{
+        -ms-interpolation-mode:bicubic;
+        height:auto;
+    }
+    body,table,td,p,a,li,blockquote{
+        -ms-text-size-adjust:100%;
+        -webkit-text-size-adjust:100%;
+    }
+    .flexibleContainerCell{
+        padding-top:10px;
+        padding-bottom:10px;
+        background-color:white;
+    }
+    .bottomShim{
+        padding-bottom:20px;
+    }
+    .imageContent,.imageContentLast{
+        text-align:center;
+    }
+    .nestedContainerCell{
+        padding-top:20px;
+        padding-right:20px;
+        padding-left:20px;
+    }
+    body,#bodyTable{
+        background-color:#FFFFFF;
+    }
+    #bodyCell{
+        background-color:white;
+    }
+    #emailBody{
+        background-color:#FFFFFF;
+        border: 1px solid #DDDDDD;
+        border-collapse:separate;
+        border-radius:5px;
+        overflow:hidden;
+        margin-bottom: 25px;
+    }
+
+    .textContent,.textContentLast{
+        color:#1a1e25;
+        font-size:17.333px;
+        font-weight:300;
+        line-height:24px;
+        text-align:left;
+    }
+    .content{
+        color:#1a1e25;
+        font-size:14.666px;
+        font-weight:300;
+        line-height:20px;
+        text-align:left;
+    }
+    .textContent a,.textContentLast a{
+        text-decoration: none;
+    }
+    .headerCell,.footerCell{
+        font-size:11px;
+        color:#000000;
+    }
+    .headerCell{
+        padding-top:20px;
+        background-color:#F0F0F0;
+    }
+    .headerCell a,.footerCell a{
+        font-size:11px;
+        color:#000000;
+    }
+    .nestedContainer{
+        background-color:#ededf5;
+        border-radius:3px;
+    }
+    .nestedContainer h1,.nestedContainer h2,.nestedContainer h3{
+        color:#000000;
+    }
+    .nestedContainer .textContent,.nestedContainer .textContentLast{
+        color:#000000;
+    }
+
+    .button {
+        background-color: #ea5d0b;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        display: inline-block;
+        border: 0;
+    }
+
+    .button-small {
+        padding: 7px 20px;
+    }
+
+    .button-large {
+        padding: 15px 20px;
+        margin: 25px 0;
+    }
+
+    .logoCell{
+        padding:30px 0;
+        font-weight:300;
+        font-size:14.66px;
+        line-height:17px;
+    }
+    /*
+    @style Kop1
+    */
+    h1{
+        /*@style Kop1*/font-weight:700;
+        font-size:20px;
+        color:white;
+        text-transform: uppercase;
+    }
+    /*
+    @style Kop2
+    */
+    h2{
+        /*@style Kop2*/font-weight:400;
+        font-size:20px;
+        line-height:30px;
+        color: #808080;
+    }
+    /*
+    @style Kop3
+    */
+    h3{
+        /*@style Kop3*/font-weight:400;
+        font-size:16px;
+        color:#000000;
+        text-transform:uppercase;
+    }
+
+    h5{
+        /*@style Kop3*/font-weight:400;
+        font-size:16px;
+        color:#000000;
+        text-transform:uppercase;
+    }
+    .dojoDndItemOver{
+        outline:solid 1px orange;
+    }
+
+    .title-center {
+        text-align: center;
+        font-size: 20px;
+        padding-bottom: 20px;
+    }
+
+    table.request {
+        margin: 0 auto;
+    }
+
+    table.request td,
+    table.contact td {
+        padding: 0 10px;
+        font-size: 15px;
+    }
+    table.test tr {
+        font-size: 14px;
+    }
+    table.request td:first-child,
+    table.contact td:first-child,
+    table.test td.question {
+        font-weight: bold;
+    }
+
+    table.contact td:first-child {
+        vertical-align: top;
+    }
+
+    h2.footer {
+        color: white;
+    }
+
+    hr {
+        color: #DDDDDD;
+    }
+
+    @media only screen and (max-width: 480px){
+        body{
+            width:100% !important;
+            min-width:100% !important;
+        }
+
+    }	@media only screen and (max-width: 480px){
+        table[id=emailBody],table[class=flexibleContainer]{
+            width:100% !important;
+        }
+
+    }	@media only screen and (max-width: 480px){
+        img[class=flexibleImage]{
+            height:auto !important;
+            width:100% !important;
+        }
+
+    }	@media only screen and (max-width: 480px){
+        .raedelijn,.buttonContent,.emailButton{
+            width:150px !important;
+        }
+
+    }	@media only screen and (max-width: 480px){
+        .buttonContent a{
+            width:100px;
+        }
+
+    }	@media only screen and (max-width: 480px){
+        table[class=emailButton]{
+            width:100px !important;
+        }
+
+    }	@media only screen and (max-width: 480px){
+        td[class=buttonContent]{
+            padding:0 !important;
+        }
+
+    }	@media only screen and (max-width: 480px){
+        td[class=buttonContent] a{
+            padding:15px !important;
+        }
+
+    }	@media only screen and (max-width: 480px){
+        td[class=textContentLast],td[class=imageContentLast]{
+            padding-top:20px !important;
+        }
+
+    }	@media only screen and (max-width: 480px){
+        td[id=bodyCell]{
+            padding-top:10px !important;
+            padding-right:10px !important;
+            padding-left:10px !important;
+        }
+    }
+
+</style>

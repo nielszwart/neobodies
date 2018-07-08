@@ -1,0 +1,301 @@
+{% extends 'website/base.html.twig' %}
+{% form_theme form 'website/form/fields.twig' %}
+{% block title %}{% trans %}Complete your profile{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        <div class='complete-profile'>
+            <a href="{{ getLocalizedRoute('account') }}" class="button-small back-button">{% trans %}Back to account{% endtrans %}</a>
+            <h1>{% trans %}Complete your profile{% endtrans %}</h1>
+
+            <div class="text">
+                <p>{% trans %}Who am I? What are my possibilities as a person?{% endtrans %}</p><br />
+                <p>{% trans %}In order to get a complete image of who you are, it is important to create a complete profile.{% endtrans %}</p><br/>
+                <p>
+                    {% trans %}All the information you provide will remain confidential!{% endtrans %}
+                    {% trans %}This information will not be shared and will only be used by us to give you the best advice based on the zone you’re in (Warrior, Hunter or Survivor).{% endtrans %}
+                </p><br/>
+                <p>
+                    {% trans %}Your personal information contributes to your GenBluePrint.{% endtrans %}
+                    {% trans %}We can then optimize this GenBluePrint with various physical tests which enable you to exercise in accordance to your zone.{% endtrans %}
+                    {% trans %}This last part (move) will be executed by our partner NEOBODIES, a place where you can perform sports and exercise based on your GenBluePrint.{% endtrans %}
+                </p>
+            </div>
+
+            {{ form_start(form) }}
+
+            <div class="form-field">
+                {{ form_label(form.city_of_birth) }}
+                {{ form_widget(form.city_of_birth, {value: profile.cityOfBirth}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.birth_time) }}
+                {{ form_widget(form.birth_time, {value: profile.birthTime}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.weight) }}
+                {{ form_widget(form.weight, {value: profile.weight}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.height) }}
+                {{ form_widget(form.height, {value: profile.height}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.gender) }}
+                {{ form_widget(form.gender, {value: profile.gender}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.gender_open) }}
+                {{ form_widget(form.gender_open, {value: profile.genderOpen}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.feeling) }}
+                {{ form_widget(form.feeling, {value: profile.feeling}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.last_sport) }}
+                {{ form_widget(form.last_sport, {value: profile.lastSport}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.limits) }}
+                {{ form_widget(form.limits, {value: profile.limits}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.limits_open) }}
+                {{ form_widget(form.limits_open, {value: profile.limitsOpen}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.complaints) }}
+                {{ form_widget(form.complaints, {value: profile.complaints}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.complaints_open) }}
+                {{ form_widget(form.complaints_open, {value: profile.complaintsOpen}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.fysio) }}
+                {{ form_widget(form.fysio, {value: profile.fysio}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.fysio_open) }}
+                {{ form_widget(form.fysio_open, {value: profile.fysioOpen}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.psychic_limits) }}
+                {{ form_widget(form.psychic_limits, {value: profile.psychicLimits}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.psychic_limits_open) }}
+                {{ form_widget(form.psychic_limits_open, {value: profile.psychicLimitsOpen}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.psychotherapy) }}
+                {{ form_widget(form.psychotherapy, {value: profile.psychotherapy}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.psychotherapy_open) }}
+                {{ form_widget(form.psychotherapy_open, {value: profile.psychotherapyOpen}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.eating) }}
+                {{ form_widget(form.eating, {value: profile.eating}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.eating_open) }}
+                {{ form_widget(form.eating_open, {value: profile.eatingOpen}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.operations) }}
+                {{ form_widget(form.operations, {value: profile.operations}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.operations_open) }}
+                {{ form_widget(form.operations_open, {value: profile.operationsOpen}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.medication) }}
+                {{ form_widget(form.medication, {value: profile.medication}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.medication_open) }}
+                {{ form_widget(form.medication_open, {value: profile.medicationOpen}) }}
+            </div>
+
+            <div class="form-field">
+                <label class="question">{% trans %}REST-moments{% endtrans %}</label>
+                {{ form_widget(form.sleep_well, {value: profile.sleepWell}) }}
+                {{ form_widget(form.not_falling_asleep, {value: profile.notFallingAsleep}) }}
+                {{ form_widget(form.awake_often, {value: profile.awakeOften}) }}
+                {{ form_widget(form.hard_to_awaken, {value: profile.hardToAwaken}) }}
+                {{ form_widget(form.easy_to_relax, {value: profile.easyToRelax}) }}
+            </div>
+
+            <div class="form-field">
+                <label class="question">{% trans %}LIVING-situation{% endtrans %}</label>
+                {{ form_widget(form.single, {value: profile.single}) }}
+                {{ form_widget(form.living_together, {value: profile.livingTogether}) }}
+                {{ form_widget(form.married, {value: profile.married}) }}
+                {{ form_widget(form.children, {value: profile.children}) }}
+            </div>
+
+            <div class="form-field">
+                <label class="question">{% trans %}WORK-situation{% endtrans %}</label>
+                {{ form_widget(form.nine_till_five, {value: profile.nineTillFive}) }}
+                {{ form_widget(form.responsibilities, {value: profile.responsibilities}) }}
+                {{ form_widget(form.shift_work, {value: profile.shiftWork}) }}
+                {{ form_widget(form.shift_work_nights, {value: profile.shiftWorkNights}) }}
+                {{ form_widget(form.freelancer, {value: profile.freelancer}) }}
+                {{ form_widget(form.three_breaks, {value: profile.threeBreaks}) }}
+                {{ form_widget(form.jobless, {value: profile.jobless}) }}
+                {{ form_widget(form.temporary_jobless, {value: profile.temporaryJobless}) }}
+            </div>
+
+            <div class="form-field">
+                <label class="question">{% trans %}STRESS-situations{% endtrans %}</label>
+                {{ form_widget(form.stress_family, {value: profile.stressFamily}) }}
+                {{ form_widget(form.stress_work, {value: profile.stressWork}) }}
+                {{ form_widget(form.daily_traffic_jam, {value: profile.dailyTrafficJam}) }}
+                {{ form_widget(form.want_change_life, {value: profile.wantChangeLife}) }}
+            </div>
+
+            <div class="form-field">
+                <label class="question">{% trans %}CHILL-moments{% endtrans %}</label>
+                {{ form_widget(form.walking, {value: profile.walking}) }}
+                {{ form_widget(form.no_full_agenda, {value: profile.noFullAgenda}) }}
+                {{ form_widget(form.yoga, {value: profile.yoga}) }}
+                {{ form_widget(form.meditate, {value: profile.meditate}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.hobbies) }}
+                {{ form_widget(form.hobbies, {value: profile.hobbies}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.hobbies_open) }}
+                {{ form_widget(form.hobbies_open, {value: profile.hobbiesOpen}) }}
+            </div>
+
+            <div class="form-field">
+                <label class="question">{% trans %}FOOD-supplements{% endtrans %}</label>
+                {{ form_widget(form.no_supplements, {value: profile.noSupplements}) }}
+                {{ form_widget(form.multivitamins, {value: profile.multivitamins}) }}
+                {{ form_widget(form.protein_shakes, {value: profile.proteinShakes}) }}
+                {{ form_widget(form.omega_3, {value: profile.omega3}) }}
+                {{ form_widget(form.other_supplements, {value: profile.otherSupplements}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.other_supplements_open) }}
+                {{ form_widget(form.other_supplements_open, {value: profile.otherSupplementsOpen}) }}
+            </div>
+
+            <div class="form-field">
+                <label class="question">{% trans %}FOOD{% endtrans %}</label>
+                {{ form_widget(form.no_bread, {value: profile.noBread}) }}
+                {{ form_widget(form.some_bread, {value: profile.someBread}) }}
+                {{ form_widget(form.daily_bread, {value: profile.dailyBread}) }}
+                {{ form_widget(form.no_fat_fish, {value: profile.noFatFish}) }}
+                {{ form_widget(form.some_fat_fish, {value: profile.someFatFish}) }}
+                {{ form_widget(form.often_fat_fish, {value: profile.oftenFatFish}) }}
+                {{ form_widget(form.only_other_fish, {value: profile.onlyOtherFish}) }}
+                {{ form_widget(form.seaweed, {value: profile.seaweed}) }}
+                {{ form_widget(form.eat_out_often, {value: profile.eatOutoften}) }}
+                {{ form_widget(form.vegetarian, {value: profile.vegetarian}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.allergies) }}
+                {{ form_widget(form.allergies, {value: profile.allergies}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.allergies_open) }}
+                {{ form_widget(form.allergies_open, {value: profile.allergiesOpen}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.intolerance) }}
+                {{ form_widget(form.intolerance, {value: profile.intolerance}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.intolerance_open) }}
+                {{ form_widget(form.intolerance_open, {value: profile.intoleranceOpen}) }}
+            </div>
+
+            <div class="form-field">
+                <label class="question">{% trans %}DIGESTION-process{% endtrans %}</label>
+                {{ form_widget(form.bloated, {value: profile.bloated}) }}
+                {{ form_widget(form.full, {value: profile.full}) }}
+                {{ form_widget(form.farting, {value: profile.farting}) }}
+                {{ form_widget(form.burping, {value: profile.burping}) }}
+                {{ form_widget(form.stomach_acid, {value: profile.stomachAcid}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.digestion_open) }}
+                {{ form_widget(form.digestion_open, {value: profile.digestionOpen}) }}
+            </div>
+
+            <div class="form-field">
+                <label class="question">{% trans %}DIGESTION-process{% endtrans %}</label>
+                {{ form_widget(form.swollen_belly, {value: profile.swollenBelly}) }}
+                {{ form_widget(form.obstipation, {value: profile.obstipation}) }}
+                {{ form_widget(form.diarrea, {value: profile.diarrea}) }}
+            </div>
+
+            <div class="form-field">
+                <label class="question">{% trans %}TRAINING{% endtrans %}</label>
+                {{ form_widget(form.sported_often, {value: profile.sportedOften}) }}
+                {{ form_widget(form.group_lessons, {value: profile.groupLessons}) }}
+                {{ form_widget(form.strength_training, {value: profile.strengthTraining}) }}
+                {{ form_widget(form.cardio_training, {value: profile.cardioTraining}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.sports_open) }}
+                {{ form_widget(form.sports_open, {value: profile.sportsOpen}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.diet) }}
+                {{ form_widget(form.diet, {value: profile.diet}) }}
+            </div>
+
+            <div class="form-field">
+                {{ form_label(form.diet_open) }}
+                {{ form_widget(form.diet_open, {value: profile.dietOpen}) }}
+            </div>
+
+            <button type="submit" class="button-large">{% trans %}Save{% endtrans %}</button>
+
+            {{ form_end(form) }}
+
+            <div class="clear"></div>
+        </div>
+    </div>
+{% endblock %}

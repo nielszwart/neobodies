@@ -1,0 +1,50 @@
+.form-field {
+  width: 50%;
+  float: left;
+  margin-bottom: 10px;
+  clear: none;
+
+  label {
+    padding: 15px 0;
+    font-size: 16px;
+    display: block;
+    width: 80%;
+  }
+
+  input,
+  select {
+    border: @form-border-style;
+    clear: both;
+    padding: 15px 20px;
+    font-size: 16px;
+    width: 80%;
+  }
+
+  input[type="radio"] {
+    -webkit-appearance: radio;
+    clear: none;
+    width: auto;
+  }
+
+  input[type="checkbox"] {
+    -webkit-appearance: checkbox;
+    clear: none;
+    width: auto;
+  }
+
+  .radio-choice,
+  .checkbox {
+    padding: 5px 0;
+
+    .radio-label,
+    .checkbox-label {
+      display: inline;
+      padding: 0;
+      margin-left: 10px;
+    }
+  }
+}
+
+.form-field.full-width {
+  width: 100%;
+}

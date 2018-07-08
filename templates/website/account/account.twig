@@ -1,0 +1,49 @@
+{% extends 'website/base.html.twig' %}
+
+{% block title %}{% trans %}Account{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        <div class="account">
+            <h1>{% trans %}Your account{% endtrans %}</h1>
+
+            <div class="account-block">
+                <a href="{{ getLocalizedRoute('account_complete_profile') }}">
+                    <img src="{{ asset('img/complete_profile_' ~ app.request.getLocale() ~ '.png') }}">
+                </a>
+            </div>
+            {% if hasGenBluePrintAccess %}
+                {% set genblueprintUrl = getLocalizedRoute('account_genblueprint') %}
+            {% else %}
+                {% set genblueprintUrl = getLocalizedRoute('account_shop') %}
+            {% endif %}
+            <div class="account-block">
+                <a href="{{ genblueprintUrl }}">
+                    <img src="{{ asset('img/genblueprint_' ~ app.request.getLocale() ~ '.png') }}">
+                </a>
+            </div>
+            <div class="account-block">
+                <a href="{{ getLocalizedRoute('account_shop') }}">
+                    <img src="{{ asset('img/shop_' ~ app.request.getLocale() ~ '.png') }}">
+                </a>
+            </div>
+            <div class="account-block">
+                <a href="{{ getLocalizedRoute('account_edit') }}">
+                    <img src="{{ asset('img/edit_account_' ~ app.request.getLocale() ~ '.png') }}">
+                </a>
+            </div>
+            <div class="account-block">
+                <a href="{{ getLocalizedRoute('account_purchase_overview') }}">
+                    <img src="{{ asset('img/purchases_' ~ app.request.getLocale() ~ '.png') }}">
+                </a>
+            </div>
+            <div class="account-block">
+                <a href="{{ getLocalizedRoute('logout') }}">
+                    <img src="{{ asset('img/logout_' ~ app.request.getLocale() ~ '.png') }}">
+                </a>
+            </div>
+
+            <div class="clear">&nbsp;</div>
+        </div>
+    </div>
+{% endblock %}

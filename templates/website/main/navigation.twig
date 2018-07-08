@@ -1,0 +1,106 @@
+{% set locale = app.request.getLocale() %}
+<header>
+    <div class="nav-wrapper">
+        <div class="nav-top">
+            <div class="nav-top-email">
+                <a href="mailto:info@neobodies.nl">info@neobodies.nl</a>
+            </div>
+            <div class="nav-top-menu">
+                <ul class="top-menu">
+                    <li class="nav-item language-selector">
+                        <a href="{% if locale == 'nl' %}http://www.neobodies.eu{% else %}http://www.neobodies.nl{% endif %}">
+                            {% if locale == 'nl' %}
+                                <img class="language-flag" src="{{ asset('img/english.svg') }}">
+                            {% else %}
+                                <img class="language-flag" src="{{ asset('img/dutch.svg') }}">
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li class="nav-item"><a href="{{ getLocalizedRoute('contact') }}">{% trans %}Contact{% endtrans %}</a></li>
+                    <li class="nav-item"><a href="{{ getLocalizedRoute('tools_view') }}">{% trans %}Tools{% endtrans %}</a></li>
+                    <li class="nav-item"><a href="{{ getLocalizedRoute('account_shop') }}">{% trans %}Shop{% endtrans %}</a></li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('logout') }}">{% trans %}Logout{% endtrans %}</a></li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <li class="nav-item"><a href="{{ getLocalizedRoute('account') }}">{% trans %}Admin{% endtrans %}</a></li>
+                        {% else %}
+                            <li class="nav-item"><a href="{{ getLocalizedRoute('account') }}">{% trans %}Account{% endtrans %}</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('login') }}">{% trans %}Login{% endtrans %}</a></li>
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('register') }}">{% trans %}Register{% endtrans %}</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a href="{{ getLocalizedRoute('homepage') }}">{% trans %}Home{% endtrans %}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav-bottom">
+            <div class="nav-bottom-logo">
+                <a href="{{ getLocalizedRoute('homepage') }}">
+                    <img alt="Logo" src="{{ asset('img/logo.png') }}">
+                </a>
+            </div>
+            <div class="nav-bottom-menu">
+                {% if locale == 'nl' %}
+                    {% set howitworks = 'hoe-werkt-het' %}
+                    {% set yoursport = 'jouw-sport' %}
+                    {% set genblueprint = 'genblueprint' %}
+                    {% set crxgenetic = 'crx-genetic' %}
+                    {% set xperts = 'xperts' %}
+                    {% set results = 'resultaten' %}
+                    {% set partners = 'partners' %}
+                {% else %}
+                    {% set howitworks = 'how-it-works' %}
+                    {% set yoursport = 'your-sport' %}
+                    {% set genblueprint = 'genblueprint' %}
+                    {% set crxgenetic = 'crx-genetic' %}
+                    {% set xperts = 'xperts' %}
+                    {% set results = 'results' %}
+                    {% set partners = 'partners' %}
+                {% endif %}
+                <div class="mobile-menu">
+                    <div id="toggle-menu">
+                        <img alt="menu" src="{{ asset('img/menu.svg') }}">
+                    </div>
+                    <ul id="mobile-menu-list">
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('homepage') }}">{% trans %}Home{% endtrans %}</a></li>
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: howitworks}) }}">{% trans %}How it works{% endtrans %}</a></li>
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: yoursport}) }}">{% trans %}Your sport{% endtrans %}</a></li>
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: genblueprint}) }}">{% trans %}GenBluePrint{% endtrans %}</a></li>
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: crxgenetic}) }}">{% trans %}CRX Genetic{% endtrans %}</a></li>
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: xperts}) }}">{% trans %}Xperts{% endtrans %}</a></li>
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: results}) }}">{% trans %}Results{% endtrans %}</a></li>
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: partners}) }}">{% trans %}Partners{% endtrans %}</a></li>
+
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('account_shop') }}">{% trans %}Shop{% endtrans %}</a></li>
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('tools_view') }}">{% trans %}Tools{% endtrans %}</a></li>
+
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <li class="nav-item"><a href="{{ getLocalizedRoute('logout') }}">{% trans %}Logout{% endtrans %}</a></li>
+                            <li class="nav-item"><a href="{{ getLocalizedRoute('account') }}">{% trans %}Account{% endtrans %}</a></li>
+                        {% else %}
+                            <li class="nav-item"><a href="{{ getLocalizedRoute('login') }}">{% trans %}Login{% endtrans %}</a></li>
+                            <li class="nav-item"><a href="{{ getLocalizedRoute('register') }}">{% trans %}Register{% endtrans %}</a></li>
+                        {% endif %}
+
+                        <li class="nav-item">
+                            <a href="{% if locale == 'nl' %}http://www.neobodies.eu{% else %}http://www.neobodies.nl{% endif %}">
+                                {% if locale == 'nl' %}English{% else %}Nederlands{% endif %}
+                            </a>
+                        </li>
+                        <li class="nav-item"><a href="{{ getLocalizedRoute('contact') }}">{% trans %}Contact{% endtrans %}</a></li>
+                    </ul>
+                </div>
+                <ul class="bottom-menu">
+                    <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: howitworks}) }}">{% trans %}How it works{% endtrans %}</a></li>
+                    <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: yoursport}) }}">{% trans %}Your sport{% endtrans %}</a></li>
+                    <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: genblueprint}) }}">{% trans %}GenBluePrint{% endtrans %}</a></li>
+                    <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: crxgenetic}) }}">{% trans %}CRX Genetic{% endtrans %}</a></li>
+                    <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: xperts}) }}">{% trans %}Xperts{% endtrans %}</a></li>
+                    <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: results}) }}">{% trans %}Results{% endtrans %}</a></li>
+                    <li class="nav-item"><a href="{{ getLocalizedRoute('page_view', {slug: partners}) }}">{% trans %}Partners{% endtrans %}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

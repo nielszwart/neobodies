@@ -1,0 +1,34 @@
+{% extends 'website/base.html.twig' %}
+
+{% block title %}{% trans %}Shopping cart{% endtrans %}{% endblock %}
+
+{% block body %}
+<div class="page-content">
+    <div class="shoppingcart">
+        <div class="top-bar">
+            <a href="{{ getLocalizedRoute('clear_cart') }}" class="button-small back-button">{% trans %}Clear cart{% endtrans %}</a>
+            <a href="{{ getLocalizedRoute('account_shop') }}" class="button-small back-button">{% trans %}Continue shopping{% endtrans %}</a>
+        </div>
+        <h1>{% trans %}Shopping cart{% endtrans %}</h1>
+        <div class="items">
+            {% for item in cart.items %}
+                <div class="item">
+                    <a href="{{ getLocalizedRoute('account_shop_product', {id: item.product_id}) }}">{{ item.product.title }}</a>
+                    x{{ item.amount }}
+                    {% if item.color %} | {{ item.color|capitalize }}{% endif %}
+                    {% if item.size %} | {{ item.size|capitalize }}{% endif %}
+                    <span class="right">&euro;{{ item.price|number_format(2) }}</span>
+                    <div class="clear">&nbsp;</div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="summary">
+            <h2>{% trans %}Total price{% endtrans %}: &euro;{{ cart.total_price|number_format(2) }}</h2>
+
+            <form method="post">
+                <button type="submit" class="button-large">{% trans %}Confirm{% endtrans %}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'website/base.html.twig' %}
+
+{% block title %}{% trans %}Login{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        {% if error %}
+            <div class="flash-message flash-error">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        <div class="login">
+            <h1>{% trans %}Login{% endtrans %}</h1>
+            <form method="post">
+
+                <div class="form-field">
+                    <label for="username">{% trans %}E-mail{% endtrans %}</label>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                </div>
+
+                <div class="form-field">
+                    <label for="password">{% trans %}Password{% endtrans %}</label>
+                    <input type="password" id="password" name="_password" />
+                </div>
+
+                <input type="hidden" name="_target_path" value="/account" />
+
+                <div class="clear">&nbsp;</div>
+
+                <button type="submit" class="button-large">{% trans %}Login{% endtrans %}</button>
+            </form>
+            <a href="{{ getLocalizedRoute('forgot_password') }}">{% trans %}Forgot password{% endtrans %}</a>
+            <a href="{{ getLocalizedRoute('register') }}">{% trans %}Register{% endtrans %}</a>
+            <div class="clear">&nbsp;</div>
+        </div>
+
+    </div>
+{% endblock %}

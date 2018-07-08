@@ -1,0 +1,96 @@
+{% extends 'website/base.html.twig' %}
+
+{% block title %}Neobodies{% endblock %}
+
+{% block body %}
+    <div class="homepage-header-image" style="background-image: url('{{ asset('img/top1.jpg') }}')">
+        <div class="text-position">
+            <div class="image-opacity-bar">
+                <h1>{% trans %}Unplugging starts here{% endtrans %}</h1>
+                <h2>{% trans %}Breathe, drink, eat and live the most effective way for you to reach your goals faster{% endtrans %}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="usps">
+        <div class="why">
+                <h2>{% trans %}Why Neobodies?{% endtrans %}</h2>
+        </div>
+        <div class="usp-list">
+            <div class="usp">
+                <div class="image">
+                    <img src="{{ asset('img/arrow.png') }}">
+                </div>
+                <div class="text">
+                    <h3>{% trans %}Results{% endtrans %}</h3>
+                    <p>
+                        {% trans %}Your GenBluePrint determines what is good for you{% endtrans %}
+                    </p>
+                </div>
+            </div>
+            <div class="usp">
+                <div class="image">
+                    <img src="{{ asset('img/dumbell.png') }}">
+                </div>
+                <div class="text">
+                    <h3>{% trans %}Shorter training{% endtrans %}</h3>
+                    <p>
+                        {% trans %}You are training with the ultimate CrossRX training system{% endtrans %}
+                    </p>
+                </div>
+            </div>
+            <div class="clear usp-mid-split">&nbsp;</div>
+            <div class="usp">
+                <div class="image">
+                    <img src="{{ asset('img/cutlery.png') }}">
+                </div>
+                <div class="text">
+                    <h3>{% trans %}Personal{% endtrans %}</h3>
+                    <p>
+                        {% trans %}Our GenBluePrint indicates how to eat{% endtrans %}
+                    </p>
+                </div>
+            </div>
+            <div class="usp">
+                <div class="image">
+                    <img src="{{ asset('img/einstein.png') }}">
+                </div>
+                <div class="text">
+                    <h3>{% trans %}Advice from experts{% endtrans %}</h3>
+                    <p>
+                        {% trans %}Neobodies is scientifically supported and works with with experts only{% endtrans %}
+                    </p>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    {% if pages %}
+        <div class="homepage-pages">
+            <ul class="pages">
+                {% for page in pages %}
+                    <li>
+                        <div class="image" style="background-image: url('{{ asset('uploads/' ~ page.slideImage) }}')">
+                            <div class="image-text">
+                                <div class="image-opacity-bar">
+                                    <h2>{{ page.slideTitle }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="content-position">
+                                <div class="align-left">
+                                    {{ page.slideText|raw }}
+                                    <a href="{{ getLocalizedRoute('page_view', {slug: page.slug}) }}" class="button-large">{{ page.buttonText }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="clear"></div>
+        </div>
+    {% endif %}
+
+{% endblock %}

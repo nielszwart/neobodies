@@ -1,0 +1,30 @@
+{% extends 'website/base.html.twig' %}
+
+{% block title %}{% trans %}Tools{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="page-content">
+        <h1>{% trans %}Tools{% endtrans %}</h1>
+        {% for tool in tools %}
+            {% if tool.file %}
+                {% set url = asset('uploads/' ~ tool.file) %}
+            {% else %}
+                {% set url = tool.link %}
+            {% endif %}
+            <div class="tool-block">
+                <div class="left">
+                    <a href="{{ url }}"{% if tool.newTab %} target="_blank"{% endif %}>
+                        <img class="tool-image" src="{{ asset('uploads/' ~ tool.image) }}">
+                    </a>
+                </div>
+                <div class="right">
+                    <div class="tool-text-position">
+                        <a href="{{ url }}"{% if tool.newTab %} target="_blank"{% endif %}><h2>{{ tool.title }}</h2></a>
+                        <div class="tool-text">{{ tool.content|raw }}</div>
+                    </div>
+                </div>
+                <div class="clear">&nbsp;</div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,3 +1,307 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+homepage:
+    path: /
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\IndexController::homepage' }
+
+login:
+    path: /login
+    defaults: { _controller: 'App\Controller\SecurityController::login' }
+
+logout:
+    path: /logout
+
+register_en:
+    path: /register
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Account\RegisterController::register' }
+register_nl:
+    path: /registreren
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Account\RegisterController::register' }
+
+registered_en:
+    path: /registered
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Account\RegisterController::registered' }
+registered_nl:
+    path: /geregistreerd
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Account\RegisterController::registered' }
+
+account:
+    path: /account
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Account\AccountController::account' }
+
+account_edit_en:
+    path: /edit-account
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Account\EditController::edit' }
+account_edit_nl:
+    path: /wijzig-account
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Account\EditController::edit' }
+
+account_complete_profile_en:
+    path: /account/complete-profile
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Account\CompleteProfileController::complete' }
+account_complete_profile_nl:
+    path: /account/profiel-aanvullen
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Account\CompleteProfileController::complete' }
+
+account_shop_en:
+    path: /account/shop
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Shop\ShopController::shop' }
+account_shop_nl:
+    path: /account/winkel
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Shop\ShopController::shop' }
+
+account_shop_product_en:
+    path: /account/shop/product/{id}
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Shop\ShopController::product' }
+account_shop_product_nl:
+    path: /account/winkel/product/{id}
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Shop\ShopController::product' }
+
+account_shop_cart_en:
+    path: /account/shop/cart
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Shop\CartController::cart' }
+account_shop_cart_nl:
+    path: /account/winkel/mandje
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Shop\CartController::cart' }
+
+account_shop_order_placed_en:
+    path: /account/shop/order-placed
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Shop\ShopController::orderPlaced' }
+account_shop_order_placed_nl:
+    path: /account/winkel/order-geplaatst
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Shop\ShopController::orderPlaced' }
+
+clear_cart:
+    path: /clear-cart
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Shop\CartController::clear' }
+
+mollie_webhook:
+    path: /mollie-webhook
+    defaults: { _controller: 'App\Controller\Shop\MollieController::webhook' }
+
+account_purchase_overview_en:
+    path: /account/purchases
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Account\PurchaseController::overview' }
+account_purchase_overview_nl:
+    path: /account/aankopen
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Account\PurchaseController::overview' }
+
+account_download_purchase:
+    path: /account/purchase/download/{id}
+    defaults: { _controller: 'App\Controller\Account\PurchaseController::download' }
+
+account_genblueprint:
+    path: /account/genblueprint
+    defaults: { _controller: 'App\Controller\Account\GenblueprintController::genblueprint' }
+
+forgot_password_en:
+    path: /forgot-password
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\SecurityController::forgotPassword' }
+forgot_password_nl:
+    path: /wachtwoord-vergeten
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\SecurityController::forgotPassword' }
+
+reset_password_en:
+    path: /reset-password
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\SecurityController::resetPassword' }
+reset_password_nl:
+    path: /wachtwoord-opnieuw-instellen
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\SecurityController::resetPassword' }
+
+contact:
+    path: /contact
+    defaults: { _controller: 'App\Controller\ContactController::contact' }
+
+magnesium_test:
+    path: /magnesium-test
+    defaults: { _controller: 'App\Controller\Test\MagnesiumTestController::test' }
+
+vitamin_test_en:
+    path: /vitamin-b12-test
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Test\VitamineTestController::test' }
+vitamin_test_nl:
+    path: /vitamine-b12-test
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Test\VitamineTestController::test' }
+
+tools_view:
+    path: /tools
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Tool\ToolsViewController::view' }
+
+page_view:
+    path: /{slug}
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Page\PageViewController::view' }
+
+admin_dashboard:
+    path: /admin/
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\DashboardController::dashboard' }
+
+admin_page_overview_en:
+    path: /admin/pages
+    host: www.neobodies.eu
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Page\PageOverviewController::overview' }
+admin_page_overview_nl:
+    path: /admin/paginas
+    host: www.neobodies.nl
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Page\PageOverviewController::overview' }
+
+admin_page_edit_en:
+    path: /admin/page/edit/{slug}/{locale}
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Page\PageEditController::edit' }
+admin_page_edit_nl:
+    path: /admin/pagina/wijzig/{slug}/{locale}
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Page\PageEditController::edit' }
+
+admin_tool_overview_en:
+    path: /admin/tools
+    host: www.neobodies.eu
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Tool\ToolOverviewController::overview' }
+admin_tool_overview_nl:
+    path: /admin/tools
+    host: www.neobodies.nl
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Tool\ToolOverviewController::overview' }
+
+admin_tool_create_en:
+    path: /admin/tool/new/{locale}
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Tool\ToolCreateController::create' }
+admin_tool_create_nl:
+    path: /admin/tool/nieuw/{locale}
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Tool\ToolCreateController::create' }
+
+admin_tool_edit_en:
+    path: /admin/tool/edit/{id}/{locale}
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Tool\ToolEditController::edit' }
+admin_tool_edit_nl:
+    path: /admin/tool/wijzig/{id}/{locale}
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Tool\ToolEditController::edit' }
+
+admin_tool_edit_delete_file:
+    path: /admin/tool/delete/file/{id}/{locale}
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Tool\ToolEditController::deleteFile' }
+
+admin_partner_overview_en:
+    path: /admin/partners
+    host: www.neobodies.eu
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Partner\PartnerOverviewController::overview' }
+admin_partner_overview_nl:
+    path: /admin/partners
+    host: www.neobodies.nl
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Partner\PartnerOverviewController::overview' }
+
+admin_partner_create_en:
+    path: /admin/partner/new/{locale}
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Partner\PartnerCreateController::create' }
+admin_partner_create_nl:
+    path: /admin/partner/nieuw/{locale}
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Partner\PartnerCreateController::create' }
+
+admin_partner_edit_en:
+    path: /admin/partner/edit/{id}/{locale}
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Partner\PartnerEditController::edit' }
+admin_partner_edit_nl:
+    path: /admin/partner/wijzig/{id}/{locale}
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Partner\PartnerEditController::edit' }
+
+admin_partner_edit_delete_file:
+    path: /admin/partner/delete/file/{id}/{locale}
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Partner\PartnerEditController::deleteFile' }
+
+admin_account_overview:
+    path: /admin/accounts
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Account\AccountOverviewController::overview' }
+
+admin_account_view:
+    path: /admin/account/{id}
+    defaults: { _controller: 'App\Controller\Account\AccountViewController::view' }
+
+admin_account_toggle_free:
+    path: /admin/account/toggle-free/{id}
+    defaults: { _controller: 'App\Controller\Account\AccountViewController::toggleAccountFree' }
+
+admin_account_toggle_active:
+    path: /admin/account/toggle-active/{id}
+    defaults: { _controller: 'App\Controller\Account\AccountViewController::toggleAccountActive' }
+
+admin_product_overview_en:
+    path: /admin/products
+    host: www.neobodies.eu
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Product\ProductOverviewController::overview' }
+admin_product_overview_nl:
+    path: /admin/producten
+    host: www.neobodies.nl
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Product\ProductOverviewController::overview' }
+
+admin_product_create_en:
+    path: /admin/product/new
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Product\ProductCreateController::create' }
+admin_product_create_nl:
+    path: /admin/product/nieuw
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Product\ProductCreateController::create' }
+
+admin_product_edit_en:
+    path: /admin/product/edit/{id}
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Product\ProductEditController::edit' }
+admin_product_edit_nl:
+    path: /admin/product/wijzig/{id}
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Product\ProductEditController::edit' }
+
+admin_product_delete_en:
+    path: /admin/product/delete/{id}
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Product\ProductDeleteController::deleteProduct' }
+admin_product_delete_nl:
+    path: /admin/product/verwijder/{id}
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Product\ProductDeleteController::deleteProduct' }
