@@ -13,8 +13,10 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ShopController extends BaseController
 {
-    public function shop()
+    public function shop(Localization $localization)
     {
+        $this->checkLoggedInForShop($localization);
+
         $products = $this->getDoctrine()->getRepository(Product::class)->findBy([
             'deleted' => false,
         ]);
@@ -29,6 +31,8 @@ class ShopController extends BaseController
 
     public function product($id, Request $request, Localization $localization, ShoppingCart $cart)
     {
+        $this->checkLoggedInForShop($localization);
+
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
         if (empty($product)) {
             throw new HttpException(404, $localization->translate('Could not find requested product'));
@@ -49,7 +53,7 @@ class ShopController extends BaseController
         );
     }
 
-    public function orderPlaced(Request $request)
+    public function orderPlaced()
     {
         return $this->render(
             'website/shop/order-placed.twig',

@@ -1,23 +1,23 @@
 <?php
 
 
-namespace App\Controller\Partner;
+namespace App\Controller\Expert;
 
 
 use App\Controller\BaseController;
-use App\Entity\Partner;
-use App\Form\PartnerType;
+use App\Entity\Expert;
+use App\Form\ExpertType;
 use App\Service\FileUploader;
 use App\Service\Localization;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
-class PartnerCreateController extends BaseController
+class ExpertCreateController extends BaseController
 {
     public function create($locale, Request $request, Localization $localization, FileUploader $fileUploader)
     {
-        $partner = new Partner($locale);
-        $form = $this->createForm(PartnerType::class);
+        $expert = new Expert($locale);
+        $form = $this->createForm(ExpertType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
@@ -34,26 +34,26 @@ class PartnerCreateController extends BaseController
                     $data['link'] = 'http://' . $data['link'];
                 }
 
-                $partner->edit($data);
+                $expert->edit($data);
 
                 $em = $this->getDoctrine()->getManager();
                 $highestId = $em->createQueryBuilder()
                     ->select('MAX(p.id)')
-                    ->from(Partner::class, 'p')
+                    ->from(Expert::class, 'p')
                     ->getQuery()
                     ->getSingleScalarResult();
 
-                $partner->setId((int) $highestId + 1);
-                $this->save($partner);
-                $this->addFlash('success', $localization->translate('Partner was created successfully'));
-                return $localization->redirectToLocalizedRoute('admin_partner_overview');
+                $expert->setId((int) $highestId + 1);
+                $this->save($expert);
+                $this->addFlash('success', $localization->translate('Expert was created successfully'));
+                return $localization->redirectToLocalizedRoute('admin_expert_overview');
             } else {
-                $this->addFlash('error', $localization->translate('Failed to create partner'));
+                $this->addFlash('error', $localization->translate('Failed to create expert'));
             }
         }
 
         return $this->render(
-            'admin/partner/partner-create.twig',
+            'admin/expert/expert-create.twig',
             [
                 'form' => $form->createView(),
             ]

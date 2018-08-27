@@ -18,6 +18,8 @@ class CartController extends BaseController
 {
     public function cart(Request $request, Localization $localization, ShoppingCart $cart, Hostnames $host)
     {
+        $this->checkLoggedInForShop($localization);
+
         if ($request->isMethod('post')) {
             if ($cart->getTotalPrice() < 0.01) {
                 $this->addFlash('error', $localization->translate('Minimum order price is 1 cent'));
@@ -54,6 +56,8 @@ class CartController extends BaseController
 
     public function clear(Localization $localization, ShoppingCart $cart)
     {
+        $this->checkLoggedInForShop($localization);
+
         try {
             $cart->clearCart();
             $this->addFlash('success', $localization->translate('Cleared your shopping cart'));

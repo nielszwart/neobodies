@@ -1,15 +1,15 @@
-<div class="partners">
+<div class="items">
     {% for partner in partners %}
-        <div class="partner-block">
+        <div class="item-block">
             <div class="left">
                 <a href="{{ partner.link }}"{% if partner.newTab %} target="_blank"{% endif %}>
-                    <img class="partner-image" src="{{ asset('uploads/' ~ partner.image) }}">
+                    <img class="item-image" src="{{ asset('uploads/' ~ partner.image) }}">
                 </a>
             </div>
             <div class="right">
-                <div class="partner-text-position">
+                <div class="item-text-position">
                     <a href="{{ partner.link }}"{% if partner.newTab %} target="_blank"{% endif %}><h2>{{ partner.name }}</h2></a>
-                    <div class="partner-text">{{ partner.content|raw }}</div>
+                    <div class="item-text">{{ partner.content|raw }}</div>
                 </div>
             </div>
             <div class="clear">&nbsp;</div>

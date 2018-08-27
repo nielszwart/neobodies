@@ -9,6 +9,7 @@ use App\Form\UserType;
 use App\Service\Localization;
 use App\Entity\Account;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegisterController extends BaseController
@@ -32,10 +33,14 @@ class RegisterController extends BaseController
 
                     $account->setUser($user);
                     $this->save($account);
-
-                    return $localization->redirectToLocalizedRoute('registered');
                 } catch (\Exception $e) {
                     $this->addFlash('error', $localization->translate('Failed to create an account'));
+                }
+
+                try {
+                    $this->login($user, $localization);
+                } catch (\Exception $exception) {
+                    return $localization->redirectToLocalizedRoute('registered');
                 }
             } else {
                 $this->addFlash('error', $localization->translate('Failed to create an account'));
@@ -48,6 +53,15 @@ class RegisterController extends BaseController
                 'accountForm' => $accountForm->createView(),
             ]
         );
+    }
+
+    protected function login($user, $localization)
+    {
+        $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+        $this->container->get('security.token_storage')->setToken($token);
+        $this->container->get('session')->set('_security_main', serialize($token));
+
+        return $localization->redirectToLocalizedRoute('account');
     }
 
     public function registered()

@@ -1,0 +1,16 @@
+<div class="items">
+    {% for x in xperts %}
+        <div class="expert-block">
+            <div class="left">
+                <img class="item-image" src="{{ asset('uploads/' ~ x.image) }}">
+            </div>
+            <div class="right">
+                <div class="item-text-position">
+                    <h2>{{ x.name }}</h2>
+                    <div class="item-text">{{ x.content|raw }}</div>
+                </div>
+            </div>
+            <div class="clear">&nbsp;</div>
+        </div>
+    {% endfor %}
+</div>

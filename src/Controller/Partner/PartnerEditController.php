@@ -35,7 +35,7 @@ class PartnerEditController extends BaseController
                     unset($data['image']);
                 }
 
-                if (strpos($data['link'], 'www') === 0) {
+                if (!empty($data['link']) && strpos($data['link'], 'www') === 0) {
                     $data['link'] = 'http://' . $data['link'];
                 }
 

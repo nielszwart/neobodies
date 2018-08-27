@@ -15,6 +15,8 @@ security:
         main:
             anonymous: ~
             form_login:
+                default_target_path: account
+                use_referer: true
                 login_path: login
                 check_path: login
             provider: our_db_provider
@@ -24,4 +26,5 @@ security:
 
     access_control:
         - { path: ^/admin/*, roles: ROLE_ADMIN }
+        - { path: ^/account/[shop|winkel]/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/account/*, roles: IS_AUTHENTICATED_REMEMBERED }

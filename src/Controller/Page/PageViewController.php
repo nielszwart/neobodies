@@ -5,6 +5,7 @@ namespace App\Controller\Page;
 
 
 use App\Controller\BaseController;
+use App\Entity\Expert;
 use App\Entity\Page;
 use App\Entity\Partner;
 use App\Service\Localization;
@@ -27,11 +28,17 @@ class PageViewController extends BaseController
             $partners = $this->getDoctrine()->getRepository(Partner::class)->findBy(['locale' => $request->getLocale()]);
         }
 
+        $xperts = [];
+        if ($page->getId() === 4) {
+            $xperts = $this->getDoctrine()->getRepository(Expert::class)->findBy(['locale' => $request->getLocale()]);
+        }
+
         return $this->render(
             'website/page/page-view.twig',
             [
                 'page' => $page,
                 'partners' => $partners,
+                'xperts' => $xperts,
             ]
         );
     }

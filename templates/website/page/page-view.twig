@@ -27,6 +27,10 @@
         {% endif %}
         {{ page.content|raw }}
 
+        {% if page.id == 4 %}
+            {% include 'website/page/_xperts.twig' %}
+        {% endif %}
+
         {% if page.id == 6 %}
             {% include 'website/page/_partners.twig' %}
         {% endif %}

@@ -251,6 +251,40 @@ admin_partner_edit_delete_file:
     methods: [GET]
     defaults: { _controller: 'App\Controller\Partner\PartnerEditController::deleteFile' }
 
+admin_expert_overview_en:
+    path: /admin/experts
+    host: www.neobodies.eu
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Expert\ExpertOverviewController::overview' }
+admin_expert_overview_nl:
+    path: /admin/experts
+    host: www.neobodies.nl
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Expert\ExpertOverviewController::overview' }
+
+admin_expert_create_en:
+    path: /admin/expert/new/{locale}
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Expert\ExpertCreateController::create' }
+admin_expert_create_nl:
+    path: /admin/expert/nieuw/{locale}
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Expert\ExpertCreateController::create' }
+
+admin_expert_edit_en:
+    path: /admin/expert/edit/{id}/{locale}
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\Expert\ExpertEditController::edit' }
+admin_expert_edit_nl:
+    path: /admin/expert/wijzig/{id}/{locale}
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\Expert\ExpertEditController::edit' }
+
+admin_expert_edit_delete_file:
+    path: /admin/expert/delete/file/{id}/{locale}
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\Expert\ExpertEditController::deleteFile' }
+
 admin_account_overview:
     path: /admin/accounts
     methods: [GET]

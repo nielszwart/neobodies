@@ -136,7 +136,7 @@ class GenblueprintController extends BaseController
     protected function sendEmailToClient($mailer, $localization, $data)
     {
         $message = (new \Swift_Message($localization->translate('GenBluePrint test')))
-            ->setFrom('info@unplugged.nl')
+            ->setFrom('info@neobodies.nl')
             ->setTo($data['email'])
             ->setBody($this->renderView('email/test-response.twig'), 'text/html');
 

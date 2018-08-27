@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{% trans %}Experts{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row header-row">
+            <div class="col-6">
+                <h1>{% trans %}Experts{% endtrans %}</h1>
+            </div>
+            <div class="col-6">
+                <a href="{{ getLocalizedRoute('admin_expert_create', {locale: 'en'}) }}" class="btn btn-dark float-right">{% trans %}New EN{% endtrans %}</a>
+                <a href="{{ getLocalizedRoute('admin_expert_create', {locale: 'nl'}) }}" class="btn btn-dark float-right">{% trans %}New NL{% endtrans %}</a>
+            </div>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <thead class="thead-inverse">
+            <tr>
+                <th>ID</th>
+                <th>{% trans %}Language{% endtrans %}</th>
+                <th>{% trans %}Name{% endtrans %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for expert in experts %}
+                <tr>
+                    <td>{{ expert.id }}</td>
+                    <td>
+                        {% if expert.locale == 'nl' %}
+                            <img src="{{ asset('img/dutch.png') }}" class="language-flag">
+                        {% elseif expert.locale == 'en' %}
+                            <img src="{{ asset('img/english.png') }}" class="language-flag">
+                        {% else %}
+                            {{ expert.locale|upper }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ getLocalizedRoute('admin_expert_edit', {'id': expert.id, 'locale': expert.locale}) }}">
+                            {{ expert.name }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
