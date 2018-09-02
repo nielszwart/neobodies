@@ -16,6 +16,10 @@ class RegisterController extends BaseController
 {
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, Localization $localization)
     {
+        if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $localization->redirectToLocalizedRoute('account');
+        }
+
         $user = new User();
         $userForm = $this->createForm(UserType::class, $user);
         $userForm->handleRequest($request);
@@ -24,7 +28,8 @@ class RegisterController extends BaseController
         $accountForm = $this->createForm(AccountType::class, $account);
         $accountForm->handleRequest($request);
         if ($request->isMethod('post')) {
-            if ($userForm->isValid() && $accountForm->isValid()) {
+            $emailAlreadyExists = $this->checkUserExists($user->getEmail());
+            if (!$emailAlreadyExists && $userForm->isValid() && $accountForm->isValid()) {
                 try {
                     $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
                     $user->setPassword($password);
@@ -34,16 +39,24 @@ class RegisterController extends BaseController
                     $account->setUser($user);
                     $this->save($account);
                 } catch (\Exception $e) {
+                    $error = true;
                     $this->addFlash('error', $localization->translate('Failed to create an account'));
                 }
 
-                try {
-                    $this->login($user, $localization);
-                } catch (\Exception $exception) {
-                    return $localization->redirectToLocalizedRoute('registered');
+                if (!isset($error)) {
+                    try {
+                        $this->login($user);
+                        return $localization->redirectToLocalizedRoute('account');
+                    } catch (\Exception $exception) {
+                        return $localization->redirectToLocalizedRoute('registered');
+                    }
                 }
             } else {
-                $this->addFlash('error', $localization->translate('Failed to create an account'));
+                $message = 'Failed to create an account';
+                if ($emailAlreadyExists) {
+                    $message = 'E-mail address already exists';
+                }
+                $this->addFlash('error', $localization->translate($message));
             }
 
         }
@@ -55,13 +68,17 @@ class RegisterController extends BaseController
         );
     }
 
-    protected function login($user, $localization)
+    protected function checkUserExists($email)
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email' => $email]);
+        return $user instanceof User;
+    }
+
+    protected function login(User $user)
     {
         $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
         $this->container->get('security.token_storage')->setToken($token);
         $this->container->get('session')->set('_security_main', serialize($token));
-
-        return $localization->redirectToLocalizedRoute('account');
     }
 
     public function registered()
