@@ -43,6 +43,7 @@ class CompleteProfileController extends BaseController
                 'form' => $form->createView(),
                 'account' => $account,
                 'profile' => $profile,
+                'blocks' => $this->getBlocks([16], $request->getLocale())
             ]
         );
     }

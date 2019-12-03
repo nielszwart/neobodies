@@ -3,63 +3,47 @@
 {% block title %}Neobodies{% endblock %}
 
 {% block body %}
-    <div class="homepage-header-image" style="background-image: url('{{ asset('img/top1.jpg') }}')">
+    <div class="homepage-header-image" style="background-image: url('{% if blocks.1.image %}{{ asset('uploads/' ~ blocks.1.image) }}{% else %}{{ asset('img/top1.jpg') }}{% endif %}')">
         <div class="text-position">
             <div class="image-opacity-bar">
-                <h1>{% trans %}Now training is really personal{% endtrans %}</h1>
-                <h2>{% trans %}Become better, stronger and faster in your own sport!{% endtrans %}</h2>
+                <h1>{{ blocks.1.title }}</h1>
+                <h2>{{ blocks.1.subtitle }}</h2>
             </div>
         </div>
     </div>
 
     <div class="usps">
         <div class="why">
-                <h2>{% trans %}Why Neobodies?{% endtrans %}</h2>
+            <h2>{{ blocks.2.title }}</h2>
         </div>
         <div class="usp-list">
             <div class="usp">
-                <div class="image">
-                    <img src="{{ asset('img/arrow.png') }}">
-                </div>
+                <div class="image"><img src="{{ asset('uploads/' ~ blocks.3.image) }}"></div>
                 <div class="text">
-                    <h3>{% trans %}Results{% endtrans %}</h3>
-                    <p>
-                        {% trans %}Your GenBluePrint determines what is good for you{% endtrans %}
-                    </p>
+                    <h3>{{ blocks.3.title }}</h3>
+                    <p>{{ blocks.3.subtitle }} </p>
                 </div>
             </div>
             <div class="usp">
-                <div class="image">
-                    <img src="{{ asset('img/dumbell.png') }}">
-                </div>
+                <div class="image"><img src="{{ asset('uploads/' ~ blocks.4.image) }}"></div>
                 <div class="text">
-                    <h3>{% trans %}Shorter training{% endtrans %}</h3>
-                    <p>
-                        {% trans %}You are training with the ultimate CRX Genetic training system{% endtrans %}
-                    </p>
+                    <h3>{{ blocks.4.title }}</h3>
+                    <p>{{ blocks.4.subtitle }} </p>
                 </div>
             </div>
             <div class="clear usp-mid-split">&nbsp;</div>
             <div class="usp">
-                <div class="image">
-                    <img src="{{ asset('img/cutlery.png') }}">
-                </div>
+                <div class="image"><img src="{{ asset('uploads/' ~ blocks.5.image) }}"></div>
                 <div class="text">
-                    <h3>{% trans %}Personal{% endtrans %}</h3>
-                    <p>
-                        {% trans %}Our GenBluePrint indicates how to eat{% endtrans %}
-                    </p>
+                    <h3>{{ blocks.5.title }}</h3>
+                    <p>{{ blocks.5.subtitle }} </p>
                 </div>
             </div>
             <div class="usp">
-                <div class="image">
-                    <img src="{{ asset('img/einstein.png') }}">
-                </div>
+                <div class="image"><img src="{{ asset('uploads/' ~ blocks.6.image) }}"> </div>
                 <div class="text">
-                    <h3>{% trans %}Advice from experts{% endtrans %}</h3>
-                    <p>
-                        {% trans %}Neobodies is scientifically supported and works with with experts only{% endtrans %}
-                    </p>
+                    <h3>{{ blocks.6.title }}</h3>
+                    <p>{{ blocks.6.subtitle }} </p>
                 </div>
             </div>
             <div class="clear"></div>

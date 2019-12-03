@@ -1,0 +1,44 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{% trans %}Content blocks{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row header-row">
+            <div class="col-6">
+                <h1>{% trans %}Content blocks{% endtrans %}</h1>
+            </div>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <thead class="thead-inverse">
+            <tr>
+                <th>ID</th>
+                <th>{% trans %}Language{% endtrans %}</th>
+                <th>{% trans %}Title{% endtrans %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for block in blocks %}
+                <tr>
+                    <td>{{ block.id }}</td>
+                    <td>
+                        {% if block.locale == 'nl' %}
+                            <img src="{{ asset('img/dutch.png') }}" class="language-flag">
+                        {% elseif block.locale == 'en' %}
+                            <img src="{{ asset('img/english.png') }}" class="language-flag">
+                        {% else %}
+                            {{ block.locale|upper }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ getLocalizedRoute('admin_content_block_edit', {'id': block.id, 'locale': block.locale}) }}">
+                            {{ block.title }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

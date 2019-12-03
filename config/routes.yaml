@@ -285,6 +285,31 @@ admin_expert_edit_delete_file:
     methods: [GET]
     defaults: { _controller: 'App\Controller\Expert\ExpertEditController::deleteFile' }
 
+admin_content_block_overview_en:
+    path: /admin/content-blocks
+    host: www.neobodies.eu
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\ContentBlock\ContentBlockOverviewController::overview' }
+admin_content_block_overview_nl:
+    path: /admin/content-blocks
+    host: www.neobodies.nl
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\ContentBlock\ContentBlockOverviewController::overview' }
+
+admin_content_block_edit_en:
+    path: /admin/content-block/edit/{id}/{locale}
+    host: www.neobodies.eu
+    defaults: { _controller: 'App\Controller\ContentBlock\ContentBlockEditController::edit' }
+admin_content_block_edit_nl:
+    path: /admin/content-block/wijzig/{id}/{locale}
+    host: www.neobodies.nl
+    defaults: { _controller: 'App\Controller\ContentBlock\ContentBlockEditController::edit' }
+
+admin_content_block_edit_delete_file:
+    path: /admin/content-block/delete/file/{id}/{locale}
+    methods: [GET]
+    defaults: { _controller: 'App\Controller\ContentBlock\ContentBlockEditController::deleteFile' }
+
 admin_account_overview:
     path: /admin/accounts
     methods: [GET]

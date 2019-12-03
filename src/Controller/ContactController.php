@@ -50,6 +50,7 @@ class ContactController extends BaseController
 
         return $this->render('website/contact.twig', [
             'form' => $form->createView(),
+            'blocks' => $this->getBlocks([15], $request->getLocale()),
         ]);
     }
 }

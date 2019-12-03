@@ -222,19 +222,8 @@
 
             <div class="clear">&nbsp;</div>
 
-            <h2>{% trans %}Physical test{% endtrans %}</h2>
-            <p>
-                {% trans %}The muscle test{% endtrans %}: {% trans %}every muscle group is tested at a maximum power on one side of the body.{% endtrans %}
-                {% trans %}(You can choose; left or right side){% endtrans %}. {% trans %}Maximum force is repeated once.{% endtrans %}
-                {% trans %}Every muscle group will be tested on the same side as chosen (left or right).{% endtrans %}
-                {% trans %}The data will be supplemented with a test of 80% of your maximum strength, and you will repeat this as many times as possible on the same side of the body.{% endtrans %}
-                <br/><br/>
-                {% trans %}Example{% endtrans %}:
-                <br/><br/>
-                {% trans %}Maximum power (1 repetition) is 60 kg with the leg extension (leg muscle machine) 80% of 60 kg is 48kg.{% endtrans %}
-                {% trans %}With those 48 kg you are going to do as many repetitions as possible.{% endtrans %}
-                {% trans %}If your machine doesn’t allow you to choose 48kg, then you can choose 45 or 50 kg and you will adjust the number of repetitions by 1 (either 1 more or one less).{% endtrans %}
-            </p>
+            <h2>{{ blocks.17.title }}</h2>
+            {{ blocks.17.text|raw|nl2br }}
 
             <div class="form-field">
                 {{ form_label(physicalForm.bicep_curl_max) }}
@@ -308,17 +297,8 @@
 
             <div class="clear">&nbsp;</div>
 
-            <p>
-                {% trans %}Body measurements{% endtrans %}: {% trans %}measuring your proportions by yourself can be quite a difficult task. Ask your partner, personal coach or doctor for help.{% endtrans %}
-                {% trans %}In this image you will clearly see what kinds of measurements you’ll have to do.{% endtrans %}
-                <br/>
-                {% trans %}We will need the following measurements of your body in centimeters{% endtrans %}:<br/>
-                {% if app.request.getLocale() == 'nl' %}
-                    <img src="{{ asset('img/thuismeten.jpg') }}" class="home-measuring">
-                {% else %}
-                    <img src="{{ asset('img/measuring.jpg') }}" class="home-measuring">
-                {% endif %}
-            </p>
+            {{ blocks.18.text|raw|nl2br }}
+            <p><img src="{{ asset('uploads/' ~ blocks.18.image) }}" class="home-measuring"></p>
 
             <div class="form-field">
                 {{ form_label(physicalForm.waist) }}
@@ -362,15 +342,7 @@
 
             <div class="clear">&nbsp;</div>
 
-            <p>
-                {% trans %}Skinfold measurement{% endtrans %}: {% trans %}our body fat is spread across our body in a unique way.{% endtrans %}
-                {% trans %}It can be difficult to measure some areas of your body by yourself.{% endtrans %}
-                {% trans %}If you’re not sure, you can always ask a professional for help.{% endtrans %}
-                {% trans %}Need any help? Just ask us for a Personal Measuring.{% endtrans %}<br/>
-                {% trans %}Measure everything from the right side of your body.{% endtrans %}<br/>
-                <br/><br/>
-                {% trans %}We need the following measurements of skinfolds{% endtrans %}:
-            </p>
+            {{ blocks.19.text|raw|nl2br }}
 
             <div class="form-field">
                 {{ form_label(physicalForm.chin) }}

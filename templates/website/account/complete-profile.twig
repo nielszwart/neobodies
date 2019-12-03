@@ -6,20 +6,10 @@
     <div class="page-content">
         <div class='complete-profile'>
             <a href="{{ getLocalizedRoute('account') }}" class="button-small back-button">{% trans %}Back to account{% endtrans %}</a>
-            <h1>{% trans %}Complete your profile{% endtrans %}</h1>
+            <h1>{{ blocks.16.title }}</h1>
 
             <div class="text">
-                <p>{% trans %}Who am I? What are my possibilities as a person?{% endtrans %}</p><br />
-                <p>{% trans %}In order to get a complete image of who you are, it is important to create a complete profile.{% endtrans %}</p><br/>
-                <p>
-                    {% trans %}All the information you provide will remain confidential!{% endtrans %}
-                    {% trans %}This information will not be shared and will only be used by us to give you the best advice based on the zone you’re in (Warrior, Hunter or Survivor).{% endtrans %}
-                </p><br/>
-                <p>
-                    {% trans %}Your personal information contributes to your GenBluePrint.{% endtrans %}
-                    {% trans %}We can then optimize this GenBluePrint with various physical tests which enable you to exercise in accordance to your zone.{% endtrans %}
-                    {% trans %}This last part (move) will be executed by our partner NEOBODIES, a place where you can perform sports and exercise based on your GenBluePrint.{% endtrans %}
-                </p>
+                {{ blocks.16.text|raw|nl2br }}
             </div>
 
             {{ form_start(form) }}

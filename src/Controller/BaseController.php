@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Entity\ContentBlock;
 use App\Service\Localization;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -30,5 +31,16 @@ class BaseController extends Controller
         }
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+    }
+
+    public function getBlocks(array $ids, $locale)
+    {
+        $foundBlocks =  $this->getDoctrine()->getRepository(ContentBlock::class)->findby(['id' => $ids, 'locale' => $locale]);
+        $blocks = [];
+        foreach ($foundBlocks as $block) {
+            $blocks[$block->getId()] = $block;
+        }
+
+        return $blocks;
     }
 }

@@ -18,9 +18,18 @@ class PageViewController extends BaseController
 {
     public function view($slug, Request $request, Localization $localization)
     {
-        $page = $this->getDoctrine()->getRepository(Page::class)->findOneBy(['slug' => $slug, 'locale' => $request->getLocale()]);
+        $locale = $request->getLocale();
+        $page = $this->getDoctrine()->getRepository(Page::class)->findOneBy(['slug' => $slug, 'locale' => $locale]);
         if (empty($page)) {
             throw new HttpException(404, $localization->translate('Could not find the page you are looking for'));
+        }
+
+        $blocks = [];
+        if ($page->getId() === 7) {
+            $blocks = $this->getBlocks([7,8,9,10], $locale);
+        }
+        if ($page->getId() === 3) {
+            $blocks = $this->getBlocks([11,12,13,14], $locale);
         }
 
         $partners = [];
@@ -39,6 +48,7 @@ class PageViewController extends BaseController
                 'page' => $page,
                 'partners' => $partners,
                 'xperts' => $xperts,
+                'blocks' => $blocks,
             ]
         );
     }

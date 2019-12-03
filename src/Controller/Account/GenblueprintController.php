@@ -108,6 +108,7 @@ class GenblueprintController extends BaseController
                 'physicalForm' => $physicalForm->createView(),
                 'account' => $account,
                 'genblueprint' => $genblueprint,
+                'blocks' => $this->getBlocks([17,18,19], $request->getLocale())
             ]
         );
     }
