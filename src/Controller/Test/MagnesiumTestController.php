@@ -43,7 +43,7 @@ class MagnesiumTestController extends BaseController
     {
         $message = (new \Swift_Message($localization->translate('Magnesium test results')))
             ->setFrom($data['email'])
-            ->setTo('michael@neocaveman.nl')
+            ->setTo('info@neobodies.nl')
             ->setBody(
                 $this->renderView(
                     'email/magnesium.twig',

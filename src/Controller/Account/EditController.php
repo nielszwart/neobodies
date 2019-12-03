@@ -14,7 +14,7 @@ class EditController extends BaseController
     {
         $account = $this->getDoctrine()->getRepository(Account::class)->findOneBy(['user' => $this->getUser()->getId()]);
 
-        $accountForm = $this->createForm(AccountType::class);
+        $accountForm = $this->createForm(AccountType::class, null, ['data' => ['action' => 'edit']]);
         $accountForm->handleRequest($request);
         if ($request->isMethod('post')) {
             if ($accountForm->isValid()) {

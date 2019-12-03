@@ -25,7 +25,7 @@ class ContactController extends BaseController
             try {
                 $message = (new \Swift_Message($localization->translate('Message through contact form')))
                     ->setFrom($data['email'])
-                    ->setTo('michael@neocaveman.nl')
+                    ->setTo('info@neobodies.nl')
                     ->setBody(
                         $this->renderView(
                             'email/contact.twig',

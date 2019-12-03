@@ -54,7 +54,7 @@ class MollieController extends BaseController
         $account = $order->getAccount();
         $message = (new \Swift_Message($localization->translate('New order')))
         ->setFrom($account->getUser()->getEmail())
-        ->setTo('michael@neocaveman.nl')
+        ->setTo('info@neobodies.nl')
         ->setBody(
             $this->renderView(
                 'email/new-order.twig',

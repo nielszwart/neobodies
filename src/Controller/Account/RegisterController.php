@@ -25,7 +25,7 @@ class RegisterController extends BaseController
         $userForm->handleRequest($request);
 
         $account = new Account();
-        $accountForm = $this->createForm(AccountType::class, $account);
+        $accountForm = $this->createForm(AccountType::class, $account, ['data' => ['action' => 'create']]);
         $accountForm->handleRequest($request);
         if ($request->isMethod('post')) {
             $emailAlreadyExists = $this->checkUserExists($user->getEmail());
@@ -37,6 +37,7 @@ class RegisterController extends BaseController
                     $this->save($user);
 
                     $account->setUser($user);
+                    $account->edit($request->request->get('account'));
                     $this->save($account);
                 } catch (\Exception $e) {
                     $error = true;

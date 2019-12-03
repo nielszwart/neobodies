@@ -118,7 +118,7 @@ class GenblueprintController extends BaseController
         $subject = $new ? "A new GenBluePrint has submitted" : "A GenBluePrint was edited";
         $message = (new \Swift_Message($localization->translate($subject)))
             ->setFrom($account->getUser()->getEmail())
-            ->setTo('michael@neocaveman.nl')
+            ->setTo('info@neobodies.nl')
             ->setBody(
                 $this->renderView(
                     'email/genblueprint.twig',
